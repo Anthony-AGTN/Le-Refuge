@@ -1,47 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal index{% endblock %}
+{% block title %}
+	{{ website }}
+	- Nos pensionnaires
+{% endblock %}
 
 {% block body %}
-    <h1>Animal index</h1>
+	<h1>Nos pensionnaires</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>LatinName</th>
-                <th>VernacularName</th>
-                <th>ArrivalDate</th>
-                <th>DepartureDate</th>
-                <th>Comment</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td>{{ animal.id }}</td>
-                <td>{{ animal.name }}</td>
-                <td>{{ animal.latinName }}</td>
-                <td>{{ animal.vernacularName }}</td>
-                <td>{{ animal.arrivalDate ? animal.arrivalDate|date('Y-m-d') : '' }}</td>
-                <td>{{ animal.departureDate ? animal.departureDate|date('Y-m-d') : '' }}</td>
-                <td>{{ animal.comment }}</td>
-                <td>{{ animal.photo }}</td>
-                <td>
-                    <a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
-                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% include "animal/components/_card.html.twig" %}
 
-    <a href="{{ path('app_animal_new') }}">Create new</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>LatinName</th>
+				<th>VernacularName</th>
+				<th>ArrivalDate</th>
+				<th>DepartureDate</th>
+				<th>Comment</th>
+				<th>Photo</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for animal in animals %}
+				<tr>
+					<td>{{ animal.id }}</td>
+					<td>{{ animal.name }}</td>
+					<td>{{ animal.latinName }}</td>
+					<td>{{ animal.vernacularName }}</td>
+					<td>{{ animal.arrivalDate ? animal.arrivalDate|date('Y-m-d') : '' }}</td>
+					<td>{{ animal.departureDate ? animal.departureDate|date('Y-m-d') : '' }}</td>
+					<td>{{ animal.comment }}</td>
+					<td>{{ animal.photo }}</td>
+					<td>
+						<a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
+						<a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_animal_new') }}">Create new</a>
 {% endblock %}
