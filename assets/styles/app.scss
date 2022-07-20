@@ -8,8 +8,12 @@ $primary-white-1: #FFFFFF;
 @import "~bootstrap/scss/bootstrap";
 
 body {
+    background-color: $primary;
+}
+
+main {
     background-image: url("../images/foret.jpg");
-    backdrop-filter: blur(2px);
+    background-repeat : no-repeat;
 }
 
 header {
