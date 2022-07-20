@@ -10,10 +10,18 @@
 
     <rule ref="PSR12"/>
 
-    <file>bin/</file>
+    <rule ref="Generic.Files.LineEndings.InvalidEOLChar">
+        <message>End of line character is invalid.
+Dear Wilder using Windows, it seems you miss something in readme during project install. You should edit your IDE settings as recommended in the install instruction.</message>
+    </rule>
+
     <file>config/</file>
     <file>public/</file>
     <file>src/</file>
     <file>tests/</file>
-
+    <exclude-pattern>config/preload.php</exclude-pattern>
+    <exclude-pattern>tests/bootstrap.php</exclude-pattern>
+    <exclude-pattern>public/index.php</exclude-pattern>
+    <exclude-pattern>src/kernel.php</exclude-pattern>
+    <exclude-pattern>migrations</exclude-pattern>
 </ruleset>
