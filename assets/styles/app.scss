@@ -1,11 +1,34 @@
 // assets/styles/app.scss
 
 // customize some Bootstrap variables
-$primary: darken(#2e9625, 20%);
+$primary: darken(#3bd82c, 20%);
+$primary-white-1: #FFFFFF;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: $primary;
+    background-image: url("../images/foret.jpg");
+    backdrop-filter: blur(2px);
+}
+
+header {
+
+    .navitemsright {
+        flex-grow: 0;
+    }
+}
+
+.welcome-container {
+    h1 {
+        color: $primary-white-1;
+    }
+}
+
+footer {
+    height: 100%;
+
+    img {
+        height: 8rem;
+    }
 }
