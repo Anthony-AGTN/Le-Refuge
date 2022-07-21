@@ -1,41 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Message index{% endblock %}
+{% block title %}Message index
+{% endblock %}
 
 {% block body %}
-    <h1>Message index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
-                <th>Message</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                <td>{{ message.id }}</td>
-                <td>{{ message.firstName }}</td>
-                <td>{{ message.lastName }}</td>
-                <td>{{ message.email }}</td>
-                <td>{{ message.message }}</td>
-                <td>
-                    <a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container text-center welcome-container">
+		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+		<h1 class="mt-4">Liste des messages</h1>
+	</div>
 
-    <a href="{{ path('app_message_new') }}">Create new</a>
+	<div class="container text-center bg-content mt-4">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-6">
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>FirstName</th>
+							<th>LastName</th>
+							<th>Email</th>
+							<th>Message</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for message in messages %}
+							<tr>
+								<td>{{ message.id }}</td>
+								<td>{{ message.firstName }}</td>
+								<td>{{ message.lastName }}</td>
+								<td>{{ message.email }}</td>
+								<td>{{ message.message }}</td>
+								<td>
+									<a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
+									<a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<a href="{{ path('app_message_new') }}">Create new</a>
+
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

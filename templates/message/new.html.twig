@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+
 	<div class="container text-center welcome-container">
 		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
 		<h1 class="mt-4">Envoyez nous un message</h1>
@@ -13,9 +14,9 @@
 		<div class="row justify-content-md-center">
 			<div class="col col-lg-6">
 				{{ include('message/_form.html.twig') }}
+				<a href="{{ path('app_message_index') }}">back to list</a>
 			</div>
 		</div>
 	</div>
 
-	<a href="{{ path('app_message_index') }}">back to list</a>
 {% endblock %}

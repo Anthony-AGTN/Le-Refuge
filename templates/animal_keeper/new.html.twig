@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New AnimalKeeper{% endblock %}
+{% block title %}New AnimalKeeper
+{% endblock %}
 
 {% block body %}
-    <h1>Create new AnimalKeeper</h1>
 
-    {{ include('animal_keeper/_form.html.twig') }}
+	<div class="container text-center welcome-container">
+		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+		<h1 class="mt-4">Ajouter soigneur.euse</h1>
+	</div>
 
-    <a href="{{ path('app_animal_keeper_index') }}">back to list</a>
+	<div class="container text-center bg-content mt-4">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-6">
+
+				{{ include('animal_keeper/_form.html.twig') }}
+
+				<a href="{{ path('app_animal_keeper_index') }}">back to list</a>
+
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
