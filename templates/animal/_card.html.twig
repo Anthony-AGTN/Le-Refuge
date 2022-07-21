@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4">
+		{% for animal in animals %}
+			<div class="col">
+				<div class="card h-100">
+					<img src="{{ asset( animal.photo )}}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">{{ animal.name }}</h5>
+						<p class="card-text">{{ animal.comment }}</p>
+					</div>
+					<div class="card-footer">
+						<a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="container-fluid btn btn-primary">Voir sa fiche</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
