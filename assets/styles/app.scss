@@ -24,6 +24,14 @@ header {
     }
 }
 
+footer {
+    height: 100%;
+
+    img {
+        height: 8rem;
+    }
+}
+
 h1 {
     color: $primary-white-1;
 }
@@ -53,10 +61,26 @@ legend {
     padding-bottom: 2rem;
 }
 
-footer {
-    height: 100%;
+.vich-file {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
 
-    img {
-        height: 8rem;
+    #animal_photoFile_delete {
+        float: none;
+        vertical-align: middle;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    a{
+        background-color: $primary;
+        border-radius: 10px;
+        color: $primary-white-1;
+        padding: 0.5em 1em;
     }
 }

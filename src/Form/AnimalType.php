@@ -24,6 +24,7 @@ class AnimalType extends AbstractType
             ->add('departureDate', null, ['label' => 'Date de départ'])
             ->add('comment', TextareaType::class, ['label' => 'Commentaire'])
             ->add('photoFile', VichFileType::class, [
+                        'label' => 'Photo',
                         'required'      => false,
                         'allow_delete'  => true, // not mandatory, default is true
                         'download_uri' => true, // not mandatory, default is true
