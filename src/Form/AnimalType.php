@@ -17,14 +17,15 @@ class AnimalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('latinName', TextType::class)
-            ->add('vernacularName', TextType::class)
-            ->add('arrivalDate', DateType::class)
-            ->add('departureDate')
-            ->add('comment', TextareaType::class)
-            ->add('photo', FileType::class)
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('latinName', TextType::class, ['label' => 'Nom latin'])
+            ->add('vernacularName', TextType::class, ['label' => 'Nom vernaculaire'])
+            ->add('arrivalDate', DateType::class, ['label' => 'Date d\'arrivée'])
+            ->add('departureDate', null, ['label' => 'Date de départ'])
+            ->add('comment', TextareaType::class, ['label' => 'Commentaire'])
+            ->add('photo', FileType::class, ['label' => 'Photo'])
             ->add('animalKeepers', null, [
+                'label' => 'Soigneur.euse.s',
                 'class' => AnimalKeeper::class,
                 'multiple' => true,
                 'expanded' => false,
