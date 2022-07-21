@@ -20,6 +20,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(new DateTime('2022-06-04'));
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/bambi.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -30,6 +31,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(new DateTime('2022-07-12'));
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/blaireau.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -40,6 +42,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(null);
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/chouette_effraie.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -50,6 +53,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(null);
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/corbeau.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -60,6 +64,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(new DateTime('2022-06-30'));
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/ecureuil.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -70,6 +75,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(null);
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/hibou_grand_duc.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -80,6 +86,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(null);
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/lievre.jpeg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -90,6 +97,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(new DateTime('2022-06-18'));
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/merle.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $animal = new Animal();
@@ -100,6 +108,7 @@ class AnimalFixtures extends Fixture
         $animal->setDepartureDate(null);
         $animal->setComment('Commentaire sur le nouvel arrivant');
         $animal->setPhoto('build/images/renard.jpg');
+        $animal->setUpdatedAt(new DateTime('2022-06-04'));
         $manager->persist($animal);
 
         $manager->flush();
