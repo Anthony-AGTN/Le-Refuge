@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Animal{% endblock %}
+{% block title %}
+	{{ website }}
+	- Ajouter un pensionnaire
+{% endblock %}
 
 {% block body %}
 	<div class="container text-center welcome-container">
@@ -8,7 +11,13 @@
 		<h1 class="mt-4">Ajouter un nouveau pensionnaire</h1>
 	</div>
 
-    {{ include('animal/_form.html.twig') }}
+	<div class="container text-center form-container mt-4">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-6">
+				{{ include('animal/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 
-    <a href="{{ path('app_animal_index') }}">back to list</a>
+	<a href="{{ path('app_animal_index') }}">back to list</a>
 {% endblock %}

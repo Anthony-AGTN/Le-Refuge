@@ -28,6 +28,31 @@ h1 {
     color: $primary-white-1;
 }
 
+label {
+    background-color: $primary;
+    border-radius: 10px;
+    color: $primary-white-1;
+    padding: 0.5em 1em;
+}
+
+legend {
+    background-color: $primary;
+    border-radius: 10px;
+    color: $primary-white-1;
+    padding: 0.5em 1em;
+    margin-bottom: 0.5rem !important;
+    width: auto;
+    float: none;
+
+}
+
+.form-container {
+    background-color: rgba(255, 255, 255, 0.685);
+    border-radius: 10px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
 footer {
     height: 100%;
 
