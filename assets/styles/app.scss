@@ -13,7 +13,7 @@ body {
 
 main {
     background-image: url("../images/foret.jpg");
-    background-repeat : no-repeat;
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -24,10 +24,8 @@ header {
     }
 }
 
-.welcome-container {
-    h1 {
-        color: $primary-white-1;
-    }
+h1 {
+    color: $primary-white-1;
 }
 
 footer {
