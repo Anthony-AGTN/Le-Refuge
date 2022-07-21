@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Refuge{% endblock %}
+
+{% block body %}
+    <h1>Edit Refuge</h1>
+
+    {{ include('refuge/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_refuge_index') }}">back to list</a>
+
+    {{ include('refuge/_delete_form.html.twig') }}
+{% endblock %}

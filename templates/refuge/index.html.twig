@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Refuge index{% endblock %}
+
+{% block body %}
+    <h1>Refuge index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Street</th>
+                <th>PostalCode</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for refuge in refuges %}
+            <tr>
+                <td>{{ refuge.id }}</td>
+                <td>{{ refuge.name }}</td>
+                <td>{{ refuge.street }}</td>
+                <td>{{ refuge.postalCode }}</td>
+                <td>{{ refuge.city }}</td>
+                <td>{{ refuge.country }}</td>
+                <td>
+                    <a href="{{ path('app_refuge_show', {'id': refuge.id}) }}">show</a>
+                    <a href="{{ path('app_refuge_edit', {'id': refuge.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_refuge_new') }}">Create new</a>
+{% endblock %}
