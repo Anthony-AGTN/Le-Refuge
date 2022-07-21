@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AnimalKeeper index{% endblock %}
+
+{% block body %}
+    <h1>AnimalKeeper index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animal_keeper in animal_keepers %}
+            <tr>
+                <td>{{ animal_keeper.id }}</td>
+                <td>{{ animal_keeper.firstName }}</td>
+                <td>{{ animal_keeper.lastName }}</td>
+                <td>
+                    <a href="{{ path('app_animal_keeper_show', {'id': animal_keeper.id}) }}">show</a>
+                    <a href="{{ path('app_animal_keeper_edit', {'id': animal_keeper.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_animal_keeper_new') }}">Create new</a>
+{% endblock %}
