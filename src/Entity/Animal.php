@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
@@ -41,10 +43,17 @@ class Animal
     private ?string $photo = null;
 
     #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
     private ?File $photoFile = null;
 
     #[ORM\ManyToMany(targetEntity: AnimalKeeper::class, inversedBy: 'animals')]
     private Collection $animalKeepers;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
     {
@@ -140,10 +149,12 @@ class Animal
         return $this;
     }
 
-    public function setPhotoFile(File $image = null): Animal
+    public function setPhotoFile(File $image = null): void
     {
         $this->photoFile = $image;
-        return $this;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
     }
 
     public function getPhotoFile(): ?File
@@ -171,6 +182,18 @@ class Animal
     public function removeAnimalKeeper(AnimalKeeper $animalKeeper): self
     {
         $this->animalKeepers->removeElement($animalKeeper);
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
