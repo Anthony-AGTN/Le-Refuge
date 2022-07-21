@@ -10,13 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/animal/keeper')]
+#[Route('/animal-keeper')]
 class AnimalKeeperController extends AbstractController
 {
     #[Route('/', name: 'app_animal_keeper_index', methods: ['GET'])]
     public function index(AnimalKeeperRepository $animalKeeperRepository): Response
     {
         return $this->render('animal_keeper/index.html.twig', [
+            'website' => 'Le Refuge',
             'animal_keepers' => $animalKeeperRepository->findAll(),
         ]);
     }
@@ -35,6 +36,7 @@ class AnimalKeeperController extends AbstractController
         }
 
         return $this->renderForm('animal_keeper/new.html.twig', [
+            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
             'form' => $form,
         ]);
@@ -44,6 +46,7 @@ class AnimalKeeperController extends AbstractController
     public function show(AnimalKeeper $animalKeeper): Response
     {
         return $this->render('animal_keeper/show.html.twig', [
+            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
         ]);
     }
@@ -64,6 +67,7 @@ class AnimalKeeperController extends AbstractController
         }
 
         return $this->renderForm('animal_keeper/edit.html.twig', [
+            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
             'form' => $form,
         ]);

@@ -17,6 +17,7 @@ class MessageController extends AbstractController
     public function index(MessageRepository $messageRepository): Response
     {
         return $this->render('message/index.html.twig', [
+            'website' => 'Le Refuge',
             'messages' => $messageRepository->findAll(),
         ]);
     }
@@ -35,6 +36,7 @@ class MessageController extends AbstractController
         }
 
         return $this->renderForm('message/new.html.twig', [
+            'website' => 'Le Refuge',
             'message' => $message,
             'form' => $form,
         ]);
@@ -44,6 +46,7 @@ class MessageController extends AbstractController
     public function show(Message $message): Response
     {
         return $this->render('message/show.html.twig', [
+            'website' => 'Le Refuge',
             'message' => $message,
         ]);
     }
@@ -61,6 +64,7 @@ class MessageController extends AbstractController
         }
 
         return $this->renderForm('message/edit.html.twig', [
+            'website' => 'Le Refuge',
             'message' => $message,
             'form' => $form,
         ]);
