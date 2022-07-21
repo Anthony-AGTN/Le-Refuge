@@ -22,6 +22,15 @@ class AnimalController extends AbstractController
         ]);
     }
 
+    #[Route('/admin', name: 'app_animal_admin_index', methods: ['GET'])]
+    public function adminIndex(AnimalRepository $animalRepository): Response
+    {
+        return $this->render('animal/admin_index.html.twig', [
+            'website' => 'Le Refuge',
+            'animals' => $animalRepository->findAll(),
+        ]);
+    }
+
     #[Route('/new', name: 'app_animal_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AnimalRepository $animalRepository): Response
     {

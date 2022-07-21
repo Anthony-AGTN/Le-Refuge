@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{% if app.user %}
+		{{ website }}
+		- Gestion des pensionnaires
+	{% else %}
+		{{ website }}
+		- Accès refusé
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+
+	{% if app.user %}
+
+		<div class="container text-center welcome-container">
+			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+			<h1 class="mt-4">Gestion des pensionnaires</h1>
+		</div>
+
+		<div class="container text-center bg-content mt-4">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>LatinName</th>
+								<th>VernacularName</th>
+								<th>ArrivalDate</th>
+								<th>DepartureDate</th>
+								<th>Comment</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for animal in animals %}
+								<tr>
+									<td>{{ animal.name }}</td>
+									<td>{{ animal.latinName }}</td>
+									<td>{{ animal.vernacularName }}</td>
+									<td>{{ animal.arrivalDate ? animal.arrivalDate|date('Y-m-d') : '' }}</td>
+									<td>{{ animal.departureDate ? animal.departureDate|date('Y-m-d') : '' }}</td>
+									<td>{{ animal.comment }}</td>
+									<td>
+										<a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
+										<a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="9">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+					<a href="{{ path('app_animal_new') }}">Create new</a>
+
+				</div>
+			</div>
+		</div>
+
+	{% else %}
+
+		<div class="container text-center welcome-container">
+			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+			<h1 class="mt-4">Accès refusé</h1>
+		</div>
+
+		<div class="container text-center bg-content mt-4">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+
+					<div class="alert alert-danger" role="alert">
+						Vous n'avez pas l'autorisation d'accéder à cette page !
+					</div>
+
+					<a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+
+{% endblock %}
