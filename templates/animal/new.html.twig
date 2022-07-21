@@ -3,7 +3,10 @@
 {% block title %}New Animal{% endblock %}
 
 {% block body %}
-    <h1>Create new Animal</h1>
+	<div class="container text-center welcome-container">
+		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+		<h1 class="mt-4">Ajouter un nouveau pensionnaire</h1>
+	</div>
 
     {{ include('animal/_form.html.twig') }}
 
