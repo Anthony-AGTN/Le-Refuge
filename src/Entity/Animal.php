@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
+#[Vich\Uploadable]
 class Animal
 {
     #[ORM\Id]
@@ -36,6 +39,9 @@ class Animal
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'photo_file', fileNameProperty: 'photo')]
+    private ?File $photoFile = null;
 
     #[ORM\ManyToMany(targetEntity: AnimalKeeper::class, inversedBy: 'animals')]
     private Collection $animalKeepers;
@@ -132,6 +138,17 @@ class Animal
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function setPhotoFile(File $image = null): Animal
+    {
+        $this->photoFile = $image;
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
     }
 
     /**

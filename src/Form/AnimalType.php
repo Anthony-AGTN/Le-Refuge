@@ -6,11 +6,11 @@ use App\Entity\Animal;
 use App\Entity\AnimalKeeper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class AnimalType extends AbstractType
 {
@@ -23,7 +23,11 @@ class AnimalType extends AbstractType
             ->add('arrivalDate', DateType::class, ['label' => 'Date d\'arrivée'])
             ->add('departureDate', null, ['label' => 'Date de départ'])
             ->add('comment', TextareaType::class, ['label' => 'Commentaire'])
-            ->add('photo', FileType::class, ['label' => 'Photo'])
+            ->add('photoFile', VichFileType::class, [
+                        'required'      => false,
+                        'allow_delete'  => true, // not mandatory, default is true
+                        'download_uri' => true, // not mandatory, default is true
+            ])
             ->add('animalKeepers', null, [
                 'label' => 'Soigneur.euse.s',
                 'class' => AnimalKeeper::class,
