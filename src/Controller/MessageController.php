@@ -32,7 +32,7 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $messageRepository->add($message, true);
 
-            return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_message_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('message/new.html.twig', [

@@ -86,6 +86,6 @@ class AnimalController extends AbstractController
             $animalRepository->remove($animal, true);
         }
 
-        return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_animal_admin_index', [], Response::HTTP_SEE_OTHER);
     }
 }

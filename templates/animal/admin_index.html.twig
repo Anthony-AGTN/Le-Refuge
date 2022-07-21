@@ -25,12 +25,12 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>LatinName</th>
-								<th>VernacularName</th>
-								<th>ArrivalDate</th>
-								<th>DepartureDate</th>
-								<th>Comment</th>
+								<th>Nom</th>
+								<th>Nom latin</th>
+								<th>Nom vernaculaire</th>
+								<th>Date d'arrivée</th>
+								<th>Date de départ</th>
+								<th>Commentaire</th>
 								<th>actions</th>
 							</tr>
 						</thead>
@@ -40,23 +40,24 @@
 									<td>{{ animal.name }}</td>
 									<td>{{ animal.latinName }}</td>
 									<td>{{ animal.vernacularName }}</td>
-									<td>{{ animal.arrivalDate ? animal.arrivalDate|date('Y-m-d') : '' }}</td>
-									<td>{{ animal.departureDate ? animal.departureDate|date('Y-m-d') : '' }}</td>
+									<td>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
+									<td>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
 									<td>{{ animal.comment }}</td>
 									<td>
-										<a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
-										<a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+										<a href="{{ path('app_animal_show', {'id': animal.id}) }}">Détail</a>
+										<a href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
+										{{ include('animal/_delete_form.html.twig') }}
 									</td>
 								</tr>
 							{% else %}
 								<tr>
-									<td colspan="9">no records found</td>
+									<td colspan="9">Aucun résultat trouvé</td>
 								</tr>
 							{% endfor %}
 						</tbody>
 					</table>
 
-					<a href="{{ path('app_animal_new') }}">Create new</a>
+					<a href="{{ path('app_animal_new') }}">Ajouter un nouveau pensionnaire</a>
 
 				</div>
 			</div>

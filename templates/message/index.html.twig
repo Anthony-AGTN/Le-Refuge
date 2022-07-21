@@ -11,8 +11,8 @@
 	</div>
 
 	<div class="container text-center bg-content mt-4">
-		<div class="row justify-content-md-center">
-			<div class="col col-lg-6">
+		<div class="row justify-content-center">
+			<div class="col">
 
 				<table class="table">
 					<thead>
@@ -34,8 +34,9 @@
 								<td>{{ message.email }}</td>
 								<td>{{ message.message }}</td>
 								<td>
-									<a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
-									<a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+									<a href="{{ path('app_message_show', {'id': message.id}) }}">Détail</a>
+									<a href="{{ path('app_message_edit', {'id': message.id}) }}">Modifier</a>
+									{{ include('message/_delete_form.html.twig') }}
 								</td>
 							</tr>
 						{% else %}
@@ -45,8 +46,6 @@
 						{% endfor %}
 					</tbody>
 				</table>
-
-				<a href="{{ path('app_message_new') }}">Create new</a>
 
 			</div>
 		</div>
