@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Animal
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $photo = null;
+
+    #[ORM\ManyToMany(targetEntity: AnimalKeeper::class, inversedBy: 'animals')]
+    private Collection $animalKeepers;
+
+    public function __construct()
+    {
+        $this->animalKeepers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,30 @@ class Animal
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AnimalKeeper>
+     */
+    public function getAnimalKeepers(): Collection
+    {
+        return $this->animalKeepers;
+    }
+
+    public function addAnimalKeeper(AnimalKeeper $animalKeeper): self
+    {
+        if (!$this->animalKeepers->contains($animalKeeper)) {
+            $this->animalKeepers[] = $animalKeeper;
+        }
+
+        return $this;
+    }
+
+    public function removeAnimalKeeper(AnimalKeeper $animalKeeper): self
+    {
+        $this->animalKeepers->removeElement($animalKeeper);
 
         return $this;
     }
