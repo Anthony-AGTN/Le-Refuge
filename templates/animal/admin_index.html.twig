@@ -25,6 +25,7 @@
 					<table class="table">
 						<thead>
 							<tr>
+								<th>Id</th>
 								<th>Nom</th>
 								<th>Nom latin</th>
 								<th>Nom vernaculaire</th>
@@ -37,6 +38,7 @@
 						<tbody>
 							{% for animal in animals %}
 								<tr>
+									<td>{{ animal.id }}</td>
 									<td>{{ animal.name }}</td>
 									<td>{{ animal.latinName }}</td>
 									<td>{{ animal.vernacularName }}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Animal;
 use App\Entity\AnimalKeeper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,8 +15,16 @@ class AnimalKeeperType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('animals')
-        ;
+            ->add('animals', null, [
+                'label' => 'Pentionnaire.s',
+                'class' => Animal::class,
+                'multiple' => true,
+                'expanded' => false,
+                'choice_label' => function ($animal) {
+                    return
+                    'id => ' . $animal->getId() . ' / ' . $animal->getName() . ' (' . $animal->getLatinName() . ')';
+                }
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
