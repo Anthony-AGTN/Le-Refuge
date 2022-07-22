@@ -43,6 +43,12 @@
 							<th>Commentaire</th>
 							<td>{{ animal.comment }}</td>
 						</tr>
+						{% for animalKeeper in animal.animalkeepers %}
+							<tr>
+								<th>Soigneur.euse.s {{ loop.index }}</th>
+								<td>{{ animalKeeper.firstName }} {{ animalKeeper.lastName }}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 
