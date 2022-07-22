@@ -1,43 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Refuge index{% endblock %}
+{% block title %}
+	{% if app.user %}
+		{{ website }}
+		- Gestion du refuge
+	{% else %}
+		{{ website }}
+		- Accès refusé
+	{% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Refuge index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Street</th>
-                <th>PostalCode</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for refuge in refuges %}
-            <tr>
-                <td>{{ refuge.id }}</td>
-                <td>{{ refuge.name }}</td>
-                <td>{{ refuge.street }}</td>
-                <td>{{ refuge.postalCode }}</td>
-                <td>{{ refuge.city }}</td>
-                <td>{{ refuge.country }}</td>
-                <td>
-                    <a href="{{ path('app_refuge_show', {'id': refuge.id}) }}">show</a>
-                    <a href="{{ path('app_refuge_edit', {'id': refuge.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{% if app.user %}
 
-    <a href="{{ path('app_refuge_new') }}">Create new</a>
+		<div class="container text-center welcome-container">
+			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+			<h1 class="mt-4">Gestion du refuge</h1>
+		</div>
+
+		<div class="container text-center bg-content mt-4">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Rue</th>
+								<th>Code postal</th>
+								<th>Ville</th>
+								<th>Pays</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for refuge in refuges %}
+								<tr>
+									<td>{{ refuge.name }}</td>
+									<td>{{ refuge.street }}</td>
+									<td>{{ refuge.postalCode }}</td>
+									<td>{{ refuge.city }}</td>
+									<td>{{ refuge.country }}</td>
+									<td>
+										<a href="{{ path('app_refuge_edit', {'id': refuge.id}) }}">Modifier</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7">Aucun résultat trouvé</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	{% else %}
+
+		<div class="container text-center welcome-container">
+			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+			<h1 class="mt-4">Accès refusé</h1>
+		</div>
+
+		<div class="container text-center bg-content mt-4">
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6">
+
+					<div class="alert alert-danger" role="alert">
+						Vous n'avez pas l'autorisation d'accéder à cette page !
+					</div>
+
+					<a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+
 {% endblock %}
