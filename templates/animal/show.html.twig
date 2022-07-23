@@ -7,59 +7,58 @@
 
 	<div class="container text-center welcome-container">
 		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-		<h1 class="mt-4">{{ animal.name }}</h1>
+		<h1 class="mt-4">Fiche du pensionnaire</h1>
 	</div>
 
 	<div class="container text-center bg-content mt-4">
+
 		<div class="row justify-content-center">
 
-			<div class="col col-11">
+			<div class="col col-11 col-lg-8 ">
 
-				<img class="img-fluid rounded" src="{{ vich_uploader_asset(animal) }}" alt="{{ animal.name }}">
-
-				<table class="table">
-					<tbody>
-						<tr>
-							<th>Nom</th>
-							<td>{{ animal.name }}</td>
-						</tr>
-						<tr>
-							<th>Nom latin</th>
-							<td>{{ animal.latinName }}</td>
-						</tr>
-						<tr>
-							<th>Nom vernaculaire</th>
-							<td>{{ animal.vernacularName }}</td>
-						</tr>
-						<tr>
-							<th>Date d'arrivée</th>
-							<td>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
-						</tr>
-						<tr>
-							<th>Date de départ</th>
-							<td>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
-						</tr>
-						<tr>
-							<th>Commentaire</th>
-							<td>{{ animal.comment }}</td>
-						</tr>
-						{% for animalKeeper in animal.animalkeepers %}
-							<tr>
-								<th>Soigneur.euse.s {{ loop.index }}</th>
-								<td>{{ animalKeeper.firstName }} {{ animalKeeper.lastName }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+				<div class="card col-auto">
+					<img src="{{ vich_uploader_asset(animal) }}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">{{ animal.name }}</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<h6>Nom latin</h6>
+							<p>{{ animal.latinName }}</p>
+						</li>
+						<li class="list-group-item">
+							<h6>Nom vernaculaire</h6>
+							<p>{{ animal.vernacularName }}</p>
+						</li>
+						<li class="list-group-item">
+							<h6>Date d'arrivée</h6>
+							<p>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</p>
+						</li>
+						<li class="list-group-item">
+							<h6>Date de départ</h6>
+							<p>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</p>
+						</li>
+						<li class="list-group-item">
+							<h6>Commentaire</h6>
+							<p>{{ animal.comment }}</p>
+						</li>
+						<li class="list-group-item">
+							{% for animalKeeper in animal.animalkeepers %}
+								<h6>Soigneur.euse.s
+									{{ loop.index }}</h6>
+								<p>{{ animalKeeper.firstName }}
+									{{ animalKeeper.lastName }}</p>
+							{% endfor %}
+						</li>
+					</ul>
+				</div>
 
 			</div>
 
 		</div>
 
-		<div>
-
+		<div class="mt-4">
 			<a href="{{ path('app_animal_index') }}">Retour à la liste</a>
-
 		</div>
 
 	</div>
