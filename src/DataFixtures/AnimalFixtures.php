@@ -110,6 +110,17 @@ class AnimalFixtures extends Fixture
         $animal->setUpdatedAt(new DateTime('now'));
         $manager->persist($animal);
 
+        $animal = new Animal();
+        $animal->setName('Babe');
+        $animal->setLatinName('Sus scrofa');
+        $animal->setVernacularName('Sanglier (marcassin)');
+        $animal->setArrivalDate(new DateTime('2020-11-17'));
+        $animal->setDepartureDate(null);
+        $animal->setComment('There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.');
+        $animal->setPhoto('renard-62d9adad101ac856553534.webp');
+        $animal->setUpdatedAt(new DateTime('now'));
+        $manager->persist($animal);
+
         $manager->flush();
     }
 }
