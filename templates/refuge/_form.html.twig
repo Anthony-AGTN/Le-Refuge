@@ -1,4 +1,30 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Valider') }}</button>
+
+{{ form_label(form.name) }}
+{{ form_widget(form.name) }}
+
+{{ form_label(form.street) }}
+{{ form_widget(form.street) }}
+
+{{ form_label(form.postalCode) }}
+{{ form_widget(form.postalCode, { 'id': 'code'}) }}
+
+{{ form_label(form.city) }}
+{{ form_widget(form.city, { 'id': 'ville'}) }}
+
+<div>
+
+	<ul>
+		<li class="li-vicopo" data-vicopo="#ville, #code" data-vicopo-click='{"#code": "code", "#ville": "ville"}'>
+			<strong data-vicopo-code-postal></strong>
+			<span data-vicopo-ville></span>
+		</li>
+	</ul>
+
+</div>
+
+{{ form_label(form.country) }}
+{{ form_widget(form.country) }}
+
+<button class="btn">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
