@@ -5,19 +5,17 @@ namespace App\Controller;
 use App\Entity\Message;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/message')]
-class MessageController extends AbstractController
+class MessageController extends MainController
 {
     #[Route('/', name: 'app_message_index', methods: ['GET'])]
     public function index(MessageRepository $messageRepository): Response
     {
         return $this->render('message/index.html.twig', [
-            'website' => 'Le Refuge',
             'messages' => $messageRepository->findAll(),
         ]);
     }
@@ -36,7 +34,6 @@ class MessageController extends AbstractController
         }
 
         return $this->renderForm('message/new.html.twig', [
-            'website' => 'Le Refuge',
             'message' => $message,
             'form' => $form,
         ]);
@@ -46,7 +43,6 @@ class MessageController extends AbstractController
     public function show(Message $message): Response
     {
         return $this->render('message/show.html.twig', [
-            'website' => 'Le Refuge',
             'message' => $message,
         ]);
     }
@@ -64,7 +60,6 @@ class MessageController extends AbstractController
         }
 
         return $this->renderForm('message/edit.html.twig', [
-            'website' => 'Le Refuge',
             'message' => $message,
             'form' => $form,
         ]);
