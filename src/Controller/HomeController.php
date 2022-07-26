@@ -10,8 +10,6 @@ class HomeController extends MainController
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-            'website' => 'niotna',
-         ]);
+        return $this->render('home/index.html.twig');
     }
 }
