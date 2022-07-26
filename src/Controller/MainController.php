@@ -20,8 +20,13 @@ class MainController extends AbstractController
      */
     protected function render(string $view, array $parameters = [], Response $response = null): Response
     {
+        if (!isset($_SESSION['refuge'])) {
+            $_SESSION['refuge'] = $this->refugeRepository->findOneBy(['id' => 1]);
+        }
 
-        $parameters['refuge'] = $this->refugeRepository->findOneBy(['id' => 1]);
+        $refuge = $_SESSION['refuge'];
+        $parameters['refuge'] = $refuge;
+
         $content = $this->renderView($view, $parameters);
 
         if (null === $response) {
