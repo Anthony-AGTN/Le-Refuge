@@ -2,18 +2,15 @@
 
 namespace App\Controller;
 
-use App\Repository\RefugeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class HomeController extends MainController
 {
     #[Route('/', name: 'app_index')]
-    public function index(RefugeRepository $refugeRepository): Response
+    public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'refuge' => $refugeRepository->findOneBy(['id' => 1]),
             'website' => 'niotna',
          ]);
     }
