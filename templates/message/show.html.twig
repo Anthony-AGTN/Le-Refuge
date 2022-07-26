@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Message
+{% block title %}
+	{% if app.user %}
+		{{ refuge.name }}
+		- Détail du message
+	{% else %}
+		{{ refuge.name }}
+		- Accès refusé
+	{% endif %}
 {% endblock %}
 
 {% block body %}
 
 	<div class="container text-center welcome-container">
 		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-		<h1 class="mt-4">Message de {{ message.firstName }} {{ message.lastName }}</h1>
+		<h1 class="mt-4">Message de
+			{{ message.firstName }}
+			{{ message.lastName }}</h1>
 	</div>
 
 	<div class="container text-center bg-content mt-4">
