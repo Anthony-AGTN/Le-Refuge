@@ -16,7 +16,6 @@ class AnimalKeeperController extends MainController
     public function index(AnimalKeeperRepository $animalKeeperRepository): Response
     {
         return $this->render('animal_keeper/index.html.twig', [
-            'website' => 'Le Refuge',
             'animal_keepers' => $animalKeeperRepository->findAll(),
         ]);
     }
@@ -35,7 +34,6 @@ class AnimalKeeperController extends MainController
         }
 
         return $this->renderForm('animal_keeper/new.html.twig', [
-            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
             'form' => $form,
         ]);
@@ -45,7 +43,6 @@ class AnimalKeeperController extends MainController
     public function show(AnimalKeeper $animalKeeper): Response
     {
         return $this->render('animal_keeper/show.html.twig', [
-            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
         ]);
     }
@@ -66,7 +63,6 @@ class AnimalKeeperController extends MainController
         }
 
         return $this->renderForm('animal_keeper/edit.html.twig', [
-            'website' => 'Le Refuge',
             'animal_keeper' => $animalKeeper,
             'form' => $form,
         ]);
