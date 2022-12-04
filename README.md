@@ -29,21 +29,21 @@ yarn install
 ```
 4. Duplicate `photos.fixtures` folder into `photos`
 ```bash
-cp /public/images/photos.fixtures ./public/images/photos
+cp -r ./public/images/photos.fixtures ./public/images/photos
 ```
 5. Build assets
 ```bash
 yarn encore dev
 ```
-6. Duplicate file env. in env.local
+6. Duplicate file `.env` in `.env.local`
 ```bash
-cp ./env ./env.local
+cp ./.env ./.env.local
 ```
-7. Dans env.local, renseigner les informations pour la base de données
+7. In `.env.local`, fill in the information for the database
 ```bash
 # DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7&charset=utf8mb4"
 ```
-8. Créer la base de données
+8. Run commands to generate the database
 ```bash
 symfony console doctrine:database:create
 symfony console doctrine:migrations:migrate
