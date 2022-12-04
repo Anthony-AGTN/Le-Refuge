@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Refuge{% endblock %}
+{% block title %}
+	{% if app.user %}
+		{{ refuge.name }}
+		- Détail du refuge
+	{% else %}
+		{{ refuge.name }}
+		- Accès refusé
+	{% endif %}
+{% endblock %}
 
 {% block body %}
     <h1>Refuge</h1>

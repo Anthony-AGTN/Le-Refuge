@@ -5,19 +5,17 @@ namespace App\Controller;
 use App\Entity\Refuge;
 use App\Form\RefugeType;
 use App\Repository\RefugeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/refuge')]
-class RefugeController extends AbstractController
+class RefugeController extends MainController
 {
     #[Route('/', name: 'app_refuge_index', methods: ['GET'])]
     public function index(RefugeRepository $refugeRepository): Response
     {
         return $this->render('refuge/index.html.twig', [
-            'website' => 'Le Refuge',
             'refuges' => $refugeRepository->findAll(),
         ]);
     }
@@ -36,7 +34,6 @@ class RefugeController extends AbstractController
         }
 
         return $this->renderForm('refuge/new.html.twig', [
-            'website' => 'Le Refuge',
             'refuge' => $refuge,
             'form' => $form,
         ]);
@@ -46,7 +43,6 @@ class RefugeController extends AbstractController
     public function show(Refuge $refuge): Response
     {
         return $this->render('refuge/show.html.twig', [
-            'website' => 'Le Refuge',
             'refuge' => $refuge,
         ]);
     }
@@ -64,7 +60,6 @@ class RefugeController extends AbstractController
         }
 
         return $this->renderForm('refuge/edit.html.twig', [
-            'website' => 'Le Refuge',
             'refuge' => $refuge,
             'form' => $form,
         ]);

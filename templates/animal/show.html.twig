@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal
+{% block title %}
+	{% if app.user %}
+		{{ refuge.name }}
+		- Fiche du pensionnaire
+	{% else %}
+		{{ refuge.name }}
+		- Accès refusé
+	{% endif %}
 {% endblock %}
 
 {% block body %}
