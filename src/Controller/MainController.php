@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Repository\RefugeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
 {
     private RefugeRepository $refugeRepository;
+    private RequestStack $requestStack;
 
-    public function __construct(RefugeRepository $refugeRepository)
+    public function __construct(RefugeRepository $refugeRepository, RequestStack $requestStack)
     {
         $this->refugeRepository = $refugeRepository;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -20,11 +23,15 @@ class MainController extends AbstractController
      */
     protected function render(string $view, array $parameters = [], Response $response = null): Response
     {
-        if (!isset($_SESSION['refuge'])) {
-            $_SESSION['refuge'] = $this->refugeRepository->findOneBy(['id' => 1]);
-        }
 
-        $refuge = $_SESSION['refuge'];
+        // Mise en session des informations du refuge
+        $session = $this->requestStack->getSession();
+
+        if (!$session->get('refuge')) {
+            $refuge = $this->refugeRepository->findOneBy(['id' => 1]);
+            $session->set('refuge', $refuge);
+        }
+        $refuge = $session->get('refuge');
         $parameters['refuge'] = $refuge;
 
         $content = $this->renderView($view, $parameters);
