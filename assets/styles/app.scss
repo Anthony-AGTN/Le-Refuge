@@ -2,7 +2,7 @@
 
 // customize some Bootstrap variables
 $primary: darken(#3bd82c, 20%);
-$primary-white-1: #FFFFFF;
+$primary-white-1: #ffffff;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
@@ -18,7 +18,6 @@ main {
 }
 
 header {
-
     .navitemsright {
         flex-grow: 0;
     }
@@ -49,7 +48,6 @@ legend {
     margin-bottom: 0.5rem !important;
     width: auto;
     float: none;
-
 }
 
 .bg-content {
@@ -85,4 +83,19 @@ legend {
 
 .li-vicopo {
     list-style-type: none;
+}
+
+.connexion-container-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connexion-container-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
 }

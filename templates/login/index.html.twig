@@ -1,39 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ refuge.name }}
-	- Login
+    {{ refuge.name }}
+    - Login
 {% endblock %}
 
 {% block body %}
 
-	<div class="container text-center welcome-container">
-		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-		<h1 class="mt-4">Page de connexion</h1>
-	</div>
+    <div class="container text-center welcome-container">
+        <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+        <h1 class="mt-4">Page de connexion</h1>
+    </div>
 
-	<div class="container text-center bg-content mt-4">
-		<div class="row justify-content-md-center">
-			<div class="col col-lg-6">
-				{% if error %}
-					<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-				{% endif %}
+    <div class="container text-center bg-content my-5">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-6">
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-				<form action="{{ path('app_login') }}" method="post">
-					<label for="username">Email :</label>
-					<input type="text" id="username" name="_username" value="{{ last_username }}"/>
+                <form action="{{ path('app_login') }}" method="post">
+                    <div class="connexion-container-1">
+                        <div class="connexion-container-2">
+                            <div>
+                                <label for="username">Email :</label>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+                            </div>
+                            <div>
+                                <label for="password">Password :</label>
+                                <input type="password" id="password" name="_password"/>
+                            </div>
+                            {# If you want to control the URL the user is redirected to on success
+                                <input type="hidden" name="_target_path" value="/account"/> #}
+                            <button class="btn btn-primary" type="submit">Se connecter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-					<label for="password">Password :</label>
-					<input
-					type="password" id="password" name="_password"/>
-
-					{# If you want to control the URL the user is redirected to on success
-					        <input type="hidden" name="_target_path" value="/account"/> #}
-
-					<button class="btn btn-primary" type="submit">Se connecter</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	
 {% endblock %}
