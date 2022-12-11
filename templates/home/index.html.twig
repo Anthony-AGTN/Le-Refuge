@@ -1,48 +1,62 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ refuge.name }}
-	- Accueil
+    {{ refuge.name }}
+    - Accueil
 {% endblock %}
 
 {% block body %}
 
-	<div class="container text-center welcome-container">
-		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-		<h1 class="mt-4">Bienvenue sur notre site</h1>
-	</div>
+    <div class="container text-center welcome-container">
+        <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+        <h1 class="mt-4">Bienvenue sur notre site</h1>
+    </div>
 
-	<div class="container mt-5 pb-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-7">
-				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-					</div>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img src="{{ asset('build/images/merle.jpg') }}" class="d-block w-100" alt="Photo de merle">
-						</div>
-						<div class="carousel-item">
-							<img src="{{ asset('build/images/ecureuil.jpg') }}" class="d-block w-100" alt="Photo de corbeau">
-						</div>
-						<div class="carousel-item">
-							<img src="{{ asset('build/images/renard.jpg') }}" class="d-block w-100" alt="Photo de renard">
-						</div>
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container mt-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('build/images/merle.jpg') }}" class="d-block w-100" alt="Photo de merle">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('build/images/ecureuil.jpg') }}" class="d-block w-100" alt="Photo de corbeau">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ asset('build/images/renard.jpg') }}" class="d-block w-100" alt="Photo de renard">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-11 col-lg-7 text-center bg-content mt-4">
+        <div class="row justify-content-center">
+            <div class="col col-lg-auto ">
+                <h3>Le refuge</h3>
+                <p>Le refuge est un centre de soins qui accueille les animaux blessés ou abandonnés. Nous avons besoin de votre aide pour continuer à sauver des vies.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-11 col-lg-8 ">
+                <a href="" class="btn btn-secondary mt-4">Faire un don</a>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
