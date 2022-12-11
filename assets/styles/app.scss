@@ -3,7 +3,8 @@
 // customize some Bootstrap variables
 $primary: #228519;
 $primary-white-1: #ffffff;
-$secondary: #DBA053;
+$secondary: #FFD786;
+$info: #DBA053;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
@@ -38,6 +39,13 @@ h1 {
 
 .bg-content {
     background-color: rgba(255, 255, 255, 0.685);
+    border-radius: 10px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.bg-content-table {
+    background-color: rgba(255, 255, 255, 0.90);
     border-radius: 10px;
     padding-top: 2rem;
     padding-bottom: 2rem;

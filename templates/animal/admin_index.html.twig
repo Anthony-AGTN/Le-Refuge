@@ -1,94 +1,95 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{% if app.user %}
-		{{ refuge.name }}
-		- Gestion des pensionnaires
-	{% else %}
-		{{ refuge.name }}
-		- Accès refusé
-	{% endif %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Gestion des pensionnaires
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
 {% endblock %}
 
 {% block body %}
 
-	{% if app.user %}
+    {% if app.user %}
 
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Gestion des pensionnaires</h1>
-		</div>
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Gestion des pensionnaires</h1>
+        </div>
 
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-12">
+        <div class="container text-center bg-content-table mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-12">
 
-					<div class="mb-4">
-						<a href="{{ path('app_animal_new') }}">Ajouter un nouveau pensionnaire</a>
-					</div>
+                    <div class="mb-4 text-end">
+                        <a class="btn btn-secondary" href="{{ path('app_animal_new') }}">+ Ajouter un nouveau pensionnaire</a>
+                    </div>
 
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>Nom</th>
-								<th>Nom latin</th>
-								<th>Nom vernaculaire</th>
-								<th>Date d'arrivée</th>
-								<th>Date de départ</th>
-								<th>Commentaire</th>
-								<th>actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for animal in animals %}
-								<tr>
-									<td>{{ animal.id }}</td>
-									<td>{{ animal.name }}</td>
-									<td>{{ animal.latinName }}</td>
-									<td>{{ animal.vernacularName }}</td>
-									<td>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
-									<td>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
-									<td>{{ animal.comment }}</td>
-									<td>
-										<a href="{{ path('app_animal_show', {'id': animal.id}) }}">Détail</a>
-										<a href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
-										{{ include('animal/_delete_form.html.twig') }}
-									</td>
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="9">Aucun résultat trouvé</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Nom latin</th>
+                                <th>Nom vernaculaire</th>
+                                <th>Date d'arrivée</th>
+                                <th>Date de départ</th>
+                                <th>Commentaire</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for animal in animals %}
+                                <tr>
+                                    <td>{{ animal.id }}</td>
+                                    <td>
+                                        <a href="{{ path('app_animal_show', {'id': animal.id}) }}">{{ animal.name }}</a>
+                                    </td>
+                                    <td>{{ animal.latinName }}</td>
+                                    <td>{{ animal.vernacularName }}</td>
+                                    <td>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
+                                    <td>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
+                                    <td>{{ animal.comment | slice(0, 240) }}...</td>
+                                    <td>
+                                        <a class="btn btn-secondary mb-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
+                                        {{ include('animal/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="9">Aucun résultat trouvé</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
 
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-	{% else %}
+    {% else %}
 
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Accès refusé</h1>
-		</div>
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Accès refusé</h1>
+        </div>
 
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-6">
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
 
-					<div class="alert alert-danger" role="alert">
-						Vous n'avez pas l'autorisation d'accéder à cette page !
-					</div>
+                    <div class="alert alert-danger" role="alert">
+                        Vous n'avez pas l'autorisation d'accéder à cette page !
+                    </div>
 
-					<a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+                    <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
 
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-	{% endif %}
+    {% endif %}
 
 {% endblock %}
