@@ -6,7 +6,7 @@
                     <img width="100%" height="100%" src="{{ vich_uploader_asset(animal) }}" alt="{{ animal.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ animal.name }}</h5>
-                        <p class="card-text">{{ animal.comment }}</p>
+                        <p class="card-text">{{ animal.comment | slice(0, 200) }}...</p>
                     </div>
                     <div class="card-footer">
                         <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="container-fluid btn btn-secondary">Voir sa fiche</a>
