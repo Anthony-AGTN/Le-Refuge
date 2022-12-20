@@ -30,13 +30,19 @@ class MessageController extends MainController
         if ($form->isSubmitted() && $form->isValid()) {
             $messageRepository->add($message, true);
 
-            return $this->redirectToRoute('app_message_new', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_message_confirmation', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('message/new.html.twig', [
             'message' => $message,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/confirmation', name: 'app_message_confirmation', methods: ['GET'])]
+    public function confirmation(): Response
+    {
+        return $this->render('message/confirmation.html.twig', []);
     }
 
     #[Route('/{id}', name: 'app_message_show', methods: ['GET'])]
