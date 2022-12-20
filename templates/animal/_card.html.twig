@@ -9,7 +9,15 @@
                         <p class="card-text">{{ animal.comment | slice(0, 200) }}...</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="container-fluid btn btn-info">Voir sa fiche</a>
+                        <div>
+                            <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="container-fluid btn btn-info">Voir sa fiche</a>
+                        </div>
+                        <div>
+                            {% if app.user %}
+                                <a class="container-fluid btn btn-secondary mt-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
+                            {% endif %}
+
+                        </div>
                     </div>
                 </div>
             </div>
