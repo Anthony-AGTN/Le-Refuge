@@ -22,12 +22,15 @@ class AnimalType extends AbstractType
             ->add('vernacularName', TextType::class, ['label' => 'Nom vernaculaire'])
             ->add('arrivalDate', DateType::class, ['label' => 'Date d\'arrivée'])
             ->add('departureDate', null, ['label' => 'Date de départ'])
-            ->add('comment', TextareaType::class, ['label' => 'Commentaire'])
+            ->add('comment', TextareaType::class, [
+                'label' => 'Commentaire',
+                'attr' => ['rows' => 10],
+            ])
             ->add('photoFile', VichFileType::class, [
-                        'label' => 'Photo',
-                        'required'      => false,
-                        'allow_delete'  => true, // not mandatory, default is true
-                        'download_uri' => true, // not mandatory, default is true
+                'label' => 'Photo',
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
             ])
             ->add('animalKeepers', null, [
                 'label' => 'Soigneur.euse.s',
