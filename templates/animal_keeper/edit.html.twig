@@ -1,59 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{% if app.user %}
-		{{ refuge.name }}
-		- Modification d'un soigneur.euse
-	{% else %}
-		{{ refuge.name }}
-		- Accès refusé
-	{% endif %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Modification d'un soigneur.euse
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
 {% endblock %}
 
 {% block body %}
 
-	{% if app.user %}
+    {% if app.user %}
 
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Modifier soigneur.euse</h1>
-		</div>
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Modifier soigneur.euse</h1>
+        </div>
 
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-6">
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
 
-					{{ include('animal_keeper/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
+                    {{ include('animal_keeper/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
+                    <div class="m-4">
+                        <a href="{{ path('app_animal_keeper_index') }}">Retour à la liste des soigneur.euse.s</a>
+                    </div>
+                    {{ include('animal_keeper/_delete_form.html.twig') }}
 
-					<a href="{{ path('app_animal_keeper_index') }}">Retour à la liste des soigneur.euse.s</a>
+                </div>
+            </div>
+        </div>
 
-					{{ include('animal_keeper/_delete_form.html.twig') }}
+    {% else %}
 
-				</div>
-			</div>
-		</div>
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Accès refusé</h1>
+        </div>
 
-	{% else %}
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
 
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Accès refusé</h1>
-		</div>
+                    <div class="alert alert-danger" role="alert">
+                        Vous n'avez pas l'autorisation d'accéder à cette page !
+                    </div>
 
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-6">
+                    <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
 
-					<div class="alert alert-danger" role="alert">
-						Vous n'avez pas l'autorisation d'accéder à cette page !
-					</div>
+                </div>
+            </div>
+        </div>
 
-					<a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
-
-				</div>
-			</div>
-		</div>
-
-	{% endif %}
+    {% endif %}
 
 {% endblock %}
