@@ -22,8 +22,7 @@ class AnimalKeeperType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 'choice_label' => function ($animal) {
-                    return
-                    'id => ' . $animal->getId() . ' / ' . $animal->getName() . ' (' . $animal->getLatinName() . ')';
+                    return $animal->getId() . ' - ' . $animal->getName() . ' (' . $animal->getLatinName() . ')';
                 }
             ]);
     }
