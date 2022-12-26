@@ -49,8 +49,8 @@
                                     </td>
                                     <td class="d-none d-md-table-cell">{{ animal.latinName }}</td>
                                     <td class="d-none d-md-table-cell">{{ animal.vernacularName }}</td>
-                                    <td class="d-none d-md-table-cell">{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
-                                    <td class="d-none d-md-table-cell">{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
+                                    <td class="d-none d-md-table-cell text-nowrap">{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
+                                    <td class="d-none d-md-table-cell text-nowrap">{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
                                     <td class="d-none d-lg-table-cell">{{ animal.comment | slice(0, 240) }}...</td>
                                     <td>
                                         <a class="btn btn-secondary mb-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
