@@ -20,22 +20,17 @@
 {% endblock %}
 
 {% block body %}
-
     {% if app.user %}
-
         <div class="container text-center welcome-container">
             <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
             <h1 class="mt-4">Liste des soigneurs.euses</h1>
         </div>
-
         <div class="container text-center bg-content-table mt-4 col-md-7">
             <div class="row justify-content-md-center">
                 <div class="col">
-
                     <div class="text-end mb-3">
                         <a class="btn btn-secondary" href="{{ path('app_animal_keeper_new') }}">+ Ajouter un nouveau soigneur.euse</a>
                     </div>
-
                     <table class="table">
                         <thead>
                             <tr>
@@ -61,37 +56,32 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="4">Aucun résultat trouvé</td>
+                                    <td colspan="12">
+                                        <div class="alert alert-info" role="alert">
+                                            Aucun enregistrement trouvé !
+                                        </div>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
-
     {% else %}
-
         <div class="container text-center welcome-container">
             <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
             <h1 class="mt-4">Accès refusé</h1>
         </div>
-
         <div class="container text-center bg-content mt-4">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-6">
-
                     <div class="alert alert-danger" role="alert">
                         Vous n'avez pas l'autorisation d'accéder à cette page !
                     </div>
-
                     <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
-
                 </div>
             </div>
         </div>
-
     {% endif %}
-
 {% endblock %}
