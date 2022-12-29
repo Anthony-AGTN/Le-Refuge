@@ -23,7 +23,7 @@
             <div class="row justify-content-md-center">
                 <div class="col col-lg-12">
 
-                    <div class="text-end">
+                    <div class="text-end mb-3">
                         <a class="btn btn-secondary" href="{{ path('app_animal_new') }}">+ Ajouter un nouveau pensionnaire</a>
                     </div>
 
@@ -32,11 +32,11 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nom</th>
-                                <th class="d-none d-md-table-cell">Nom latin</th>
-                                <th class="d-none d-md-table-cell">Nom vernaculaire</th>
-                                <th class="d-none d-md-table-cell">Date d'arrivée</th>
-                                <th class="d-none d-md-table-cell">Date de départ</th>
-                                <th class="d-none d-lg-table-cell">Commentaire</th>
+                                <th class="d-none d-lg-table-cell text-nowrap">Nom latin</th>
+                                <th class="d-none d-md-table-cell text-nowrap">Nom vernaculaire</th>
+                                <th class="d-none d-md-table-cell text-nowrap">Date d'arrivée</th>
+                                <th class="d-none d-md-table-cell text-nowrap">Date de départ</th>
+                                <th class="d-none d-lg-table-cell text-nowrap">Commentaire</th>
                                 <th>actions</th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                                     <td>
                                         <a href="{{ path('app_animal_show', {'id': animal.id}) }}">{{ animal.name }}</a>
                                     </td>
-                                    <td class="d-none d-md-table-cell">{{ animal.latinName }}</td>
+                                    <td class="d-none d-lg-table-cell">{{ animal.latinName }}</td>
                                     <td class="d-none d-md-table-cell">{{ animal.vernacularName }}</td>
                                     <td class="d-none d-md-table-cell text-nowrap">{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</td>
                                     <td class="d-none d-md-table-cell text-nowrap">{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</td>
