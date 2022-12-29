@@ -5,6 +5,8 @@ $primary: #228519;
 $primary-white-1: #ffffff;
 $secondary: #FFD786;
 $info: #DBA053;
+$link-color: black;
+$link-hover-color: $primary;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";

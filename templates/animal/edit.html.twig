@@ -23,10 +23,13 @@
 			<div class="row justify-content-md-center">
 				<div class="col col-lg-6">
 					{{ include('animal/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
+					<div class="mt-4">
+					{{ include('animal/_delete_form.html.twig') }}
+					</div>
 					<div class="m-4">
 						<a href="{{ path('app_animal_admin_index') }}">Retour à la liste des pensionnaires</a>
 					</div>
-					{{ include('animal/_delete_form.html.twig') }}
+					
 				</div>
 			</div>
 		</div>
