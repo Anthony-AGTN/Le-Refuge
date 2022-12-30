@@ -1,66 +1,66 @@
 <header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-		<div class="container">
-			<a class="navbar-brand ms-5" href="{{ path('app_index') }}">
-				{{ refuge.name }}</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse navitemsright me-5" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="{{ path('app_index') }}">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="{{ path('app_animal_index') }}">Nos pensionnaires</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="{{ path('app_message_new') }}">Contact</a>
-					</li>
-					{% if app.user %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								{{ app.user.email }}
-							</a>
-							<ul class="dropdown-menu position-absolute">
-								<li>
-									<a class="dropdown-item" href="{{ path('app_index') }}">Accueil</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_animal_admin_index') }}">Gestion des pensionnaires</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_animal_new') }}">Ajouter un pensionnaire</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_animal_keeper_index') }}">Gestion des soigneur.euse.s</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_animal_keeper_new') }}">Ajouter un soigneur.euse</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_message_index') }}">Gestion des messages</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_refuge_index') }}">Gestion du refuge</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a>
-								</li>
-							</ul>
-						</li>
-					{% else %}
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
-						</li>
-					{% endif %}
-				</ul>
-			</div>
-		</div>
-	</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand ms-5" href="{{ path('app_index') }}">
+                {{ refuge.name }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navitemsright me-5" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_index') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_animal_index') }}">Nos pensionnaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_message_new') }}">Contact</a>
+                    </li>
+                    {% if app.user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ app.user.email }}
+                            </a>
+                            <ul class="dropdown-menu position-absolute">
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_index') }}">Accueil</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_animal_admin_index') }}">Gestion des pensionnaires</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_animal_new') }}">Ajouter un pensionnaire</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_animal_keeper_index') }}">Gestion des soigneur.euse.s</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_animal_keeper_new') }}">Ajouter un soigneur.euse</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">Gestion des messages</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_refuge_edit', {'id': 1}) }}">Informations du refuge</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>

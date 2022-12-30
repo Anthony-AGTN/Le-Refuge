@@ -1,57 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{% if app.user %}
-		{{ refuge.name }}
-		- Modification du refuge
-	{% else %}
-		{{ refuge.name }}
-		- Accès refusé
-	{% endif %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Modification du refuge
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-
-	{% if app.user %}
-
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Modifier les informations du refuge</h1>
-		</div>
-
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-6">
-
-					{{ include('refuge/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-					<a href="{{ path('app_refuge_index') }}">Retour aux informations du refuge</a>
-
-				</div>
-			</div>
-		</div>
-
-	{% else %}
-
-		<div class="container text-center welcome-container">
-			<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-			<h1 class="mt-4">Accès refusé</h1>
-		</div>
-
-		<div class="container text-center bg-content mt-4">
-			<div class="row justify-content-md-center">
-				<div class="col col-lg-6">
-
-					<div class="alert alert-danger" role="alert">
-						Vous n'avez pas l'autorisation d'accéder à cette page !
-					</div>
-
-					<a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
-
-				</div>
-			</div>
-		</div>
-
-	{% endif %}
-
+    {% if app.user %}
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Modifier les informations du refuge</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    {{ include('refuge/_form.html.twig', {'button_label': 'Modifier'}) }}
+                    <div class="mt-4">
+                        <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Accès refusé</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    <div class="alert alert-danger" role="alert">
+                        Vous n'avez pas l'autorisation d'accéder à cette page !
+                    </div>
+                    <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
