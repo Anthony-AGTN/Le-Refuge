@@ -11,50 +11,69 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container text-center welcome-container">
-        <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-        <h1 class="mt-4">Liste des messages</h1>
-    </div>
-    <div class="container text-center bg-content-table mt-4">
-        <div class="row justify-content-center">
-            <div class="col">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Prénom</th>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Message</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for message in messages %}
+    {% if app.user %}
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Liste des messages</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ message.id }}</td>
-                                <td>{{ message.firstName }}</td>
-                                <td>{{ message.lastName }}</td>
-                                <td>{{ message.email }}</td>
-                                <td>{{ message.message }}</td>
-                                <td>
-                                    <a href="{{ path('app_message_show', {'id': message.id}) }}">Détail</a>
-                                    <a href="{{ path('app_message_edit', {'id': message.id}) }}">Modifier</a>
-                                    {{ include('message/_delete_form.html.twig') }}
-                                </td>
+                                <th class="text-nowrap">Date</th>
+                                <th class="text-nowrap">Nom</th>
+                                <th class="d-none d-lg-table-cell text-nowrap">Email</th>
+                                <th class="d-none d-lg-table-cell text-nowrap">Message</th>
+                                <th>actions</th>
                             </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="12">
-                                    <div class="alert alert-info" role="alert">
-                                        Aucun enregistrement trouvé !
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for message in messages %}
+                                <tr>
+                                    <td>{{ "now"|date("m/d/Y") }}</td>
+                                    <td>{{ message.firstName }}
+                                        {{ message.lastName }}</td>
+                                    <td class="d-none d-lg-table-cell">
+                                        <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                                    </td>
+                                    <td class="d-none d-lg-table-cell">
+                                        <a class="message-text" href="{{ path('app_message_show', {'id': message.id}) }}">{{ message.message | slice(0, 240) }}...</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-secondary mb-2" href="{{ path('app_message_show', {'id': message.id}) }}">Détail</a>
+                                        {{ include('message/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-info" role="alert">
+                                            Aucun enregistrement trouvé !
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container text-center welcome-container">
+            <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
+            <h1 class="mt-4">Accès refusé</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    <div class="alert alert-danger" role="alert">
+                        Vous n'avez pas l'autorisation d'accéder à cette page !
+                    </div>
+                    <a href="{{ path('app_index') }}">Retour à la page d'accueil</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
