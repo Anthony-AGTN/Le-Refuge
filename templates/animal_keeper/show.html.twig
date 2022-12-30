@@ -28,6 +28,14 @@
                             <th>LastName</th>
                             <td>{{ animal_keeper.lastName }}</td>
                         </tr>
+                        {% if animal_keeper.animals %}
+                            <tr>
+                                <th>Pensionnaires attribués</th>
+                                {% for animal in animal_keeper.animals %}
+                                    <td>{{ animal.name }} ({{ animal.vernacularName }})</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
                     </tbody>
                 </table>
                 <div class="mt-4 d-flex justify-content-around">
