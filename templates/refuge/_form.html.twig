@@ -13,18 +13,19 @@
 {{ form_widget(form.city, { 'id': 'ville'}) }}
 
 <div>
-
-	<ul>
-		<li class="li-vicopo" data-vicopo="#ville, #code" data-vicopo-click='{"#code": "code", "#ville": "ville"}'>
-			<strong data-vicopo-code-postal></strong>
-			<span data-vicopo-ville></span>
-		</li>
-	</ul>
-
+    <ul>
+        <li class="li-vicopo" data-vicopo="#ville, #code" data-vicopo-click='{"#code": "code", "#ville": "ville"}'>
+            <strong data-vicopo-code-postal></strong>
+            <span data-vicopo-ville></span>
+        </li>
+    </ul>
 </div>
 
 {{ form_label(form.country) }}
 {{ form_widget(form.country) }}
+
+{{ form_label(form.phone) }}
+{{ form_widget(form.phone) }}
 
 <button class="btn btn-primary mt-4">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}

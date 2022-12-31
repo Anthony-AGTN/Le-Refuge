@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Refuge;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,7 @@ class RefugeType extends AbstractType
             ->add('postalCode', TextType::class, ['label' => 'Code postal'])
             ->add('city', TextType::class, ['label' => 'Ville'])
             ->add('country', TextType::class, ['label' => 'Pays'])
+            ->add('phone', TelType::class, ['label' => 'Téléphone'])
         ;
     }
 

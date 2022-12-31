@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\RefugeRepository;
+use App\Service\FormatDataService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +33,7 @@ class MainController extends AbstractController
             $session->set('refuge', $refuge);
         }
         $refuge = $session->get('refuge');
+        $refuge->setPhone(FormatDataService::formatPhone($refuge->getPhone()));
         $parameters['refuge'] = $refuge;
 
         $content = $this->renderView($view, $parameters);

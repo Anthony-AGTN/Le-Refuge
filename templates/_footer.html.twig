@@ -1,42 +1,40 @@
 <footer class="footer mt-auto py-3 bg-primary">
-	<div class="container text-center">
-		<div class="row d-flex flex-column flex-sm-row">
-
-			<div class="col mb-5 mb-sm-0">
-				<a class="nav-link active" aria-current="page" href="{{ path('app_index') }}"><img src="{{ asset('build/images/logo_le_refuge.png') }}" alt="Logo le refuge"></a>
-			</div>
-
-			<div class="col">
-				<ul class="navbar-nav me-auto mb-5 mb-sm-0">
-					<li class="nav-item">
-						<a class="nav-link active text-white" aria-current="page" href="{{ path('app_index') }}">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active text-white" aria-current="page" href="{{ path('app_animal_index') }}">Nos pensionnaires</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active text-white" aria-current="page" href="{{ path('app_message_new') }}">Contact</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col">
-				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-					<li class="nav-item">
-						<h6 class="text-white">{{ refuge.name }}</h6>
-					</li>
-					<li class="nav-item">
-						<p class="text-white m-1">{{ refuge.street }}</p>
-					</li>
-					<li class="nav-item">
-						<p class="text-white m-1">{{ refuge.postalCode }} {{ refuge.city }}</p>
-					</li>
-					<li class="nav-item">
-						<p class="text-white m-1">Tel : 07 00 57 00 00</p>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-	</div>
+    <div class="container text-center">
+        <div class="row d-flex flex-column flex-sm-row">
+            <div class="col mb-5 mb-sm-0">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_index') }}"><img src="{{ asset('build/images/logo_le_refuge.png') }}" alt="Logo le refuge"></a>
+            </div>
+            <div class="col">
+                <ul class="navbar-nav me-auto mb-5 mb-sm-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{{ path('app_index') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{{ path('app_animal_index') }}">Nos pensionnaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{{ path('app_message_new') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                    <li class="nav-item">
+                        <h6 class="text-white">{{ refuge.name }}</h6>
+                    </li>
+                    <li class="nav-item">
+                        <p class="text-white m-1">{{ refuge.street }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <p class="text-white m-1">{{ refuge.postalCode }}
+                            {{ refuge.city }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <p class="text-white m-1">Tel :
+                            {{ refuge.phone }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </footer>
