@@ -28,7 +28,7 @@
                             <th>LastName</th>
                             <td>{{ animal_keeper.lastName }}</td>
                         </tr>
-                        {% if animal_keeper.animals %}
+                        {% if animal_keeper.animals is not empty %}
                             <tr>
                                 <th>Pensionnaires attribués</th>
                                 {% for animal in animal_keeper.animals %}
