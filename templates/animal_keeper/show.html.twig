@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container text-center welcome-container">
-        <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-        <h1 class="mt-4">Détail soigneur.euse</h1>
+    <div class="container text-center">
+        <h1>Détail soigneur.euse "{{ animal_keeper.firstName }}
+            {{ animal_keeper.lastName }}"</h1>
     </div>
     <div class="container text-center bg-content-table mt-4 col-sm-6 col-md-5 col-xl-3">
         <div class="row justify-content-md-center">
@@ -32,7 +32,8 @@
                             <tr>
                                 <th>Pensionnaires attribués</th>
                                 {% for animal in animal_keeper.animals %}
-                                    <td>{{ animal.name }} ({{ animal.vernacularName }})</td>
+                                    <td>{{ animal.name }}
+                                        ({{ animal.vernacularName }})</td>
                                 {% endfor %}
                             </tr>
                         {% endif %}

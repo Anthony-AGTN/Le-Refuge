@@ -1,74 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{% if app.user %}
-		{{ refuge.name }}
-		- Fiche du pensionnaire
-	{% else %}
-		{{ refuge.name }}
-		- Accès refusé
-	{% endif %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Fiche du pensionnaire
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-
-	<div class="container text-center welcome-container">
-		<img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-		<h1 class="mt-4">Fiche du pensionnaire</h1>
-	</div>
-
-	<div class="container text-center bg-content mt-4">
-
-		<div class="row justify-content-center">
-
-			<div class="col col-11 col-lg-8 ">
-
-				<div class="card col-auto">
-					<img src="{{ vich_uploader_asset(animal) }}" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">{{ animal.name }}</h5>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<h6>Nom latin</h6>
-							<p>{{ animal.latinName }}</p>
-						</li>
-						<li class="list-group-item">
-							<h6>Nom vernaculaire</h6>
-							<p>{{ animal.vernacularName }}</p>
-						</li>
-						<li class="list-group-item">
-							<h6>Date d'arrivée</h6>
-							<p>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</p>
-						</li>
-						<li class="list-group-item">
-							<h6>Date de départ</h6>
-							<p>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</p>
-						</li>
-						<li class="list-group-item">
-							<h6>Commentaire</h6>
-							<p>{{ animal.comment }}</p>
-						</li>
-						{% if animal.animalkeepers is not empty %}
-						<li class="list-group-item">
-							<h6>Soigneur.euse.s</h6>
-							{% for animalKeeper in animal.animalkeepers %}
-								<p>{{ animalKeeper.firstName }}
-									{{ animalKeeper.lastName }}</p>
-							{% endfor %}
-						</li>
-						{% endif %}
-					</ul>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="mt-4">
-			<a href="{{ path('app_animal_index') }}">Retour à la liste</a>
-		</div>
-
-	</div>
-
+    <div class="container text-center">
+        <h1>Fiche du pensionnaire</h1>
+    </div>
+    <div class="container text-center bg-content mt-4">
+        <div class="row justify-content-center">
+            <div class="col col-11 col-lg-8 ">
+                <div class="card col-auto">
+                    <img src="{{ vich_uploader_asset(animal) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ animal.name }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h6>Nom latin</h6>
+                            <p>{{ animal.latinName }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Nom vernaculaire</h6>
+                            <p>{{ animal.vernacularName }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Date d'arrivée</h6>
+                            <p>{{ animal.arrivalDate ? animal.arrivalDate|date('d-m-Y') : '' }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Date de départ</h6>
+                            <p>{{ animal.departureDate ? animal.departureDate|date('d-m-Y') : 'N/A' }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h6>Commentaire</h6>
+                            <p>{{ animal.comment }}</p>
+                        </li>
+                        {% if animal.animalkeepers is not empty %}
+                            <li class="list-group-item">
+                                <h6>Soigneur.euse.s</h6>
+                                {% for animalKeeper in animal.animalkeepers %}
+                                    <p>{{ animalKeeper.firstName }}
+                                        {{ animalKeeper.lastName }}</p>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{{ path('app_animal_index') }}">Retour à la liste</a>
+        </div>
+    </div>
 {% endblock %}

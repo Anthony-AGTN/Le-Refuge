@@ -6,12 +6,9 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="container text-center welcome-container">
-        <img class="mt-4" src="{{ asset('build/images/apple-touch-icon.png') }}" alt="Logo le refuge"/>
-        <h1 class="mt-4">Bienvenue sur notre site</h1>
+    <div class="container text-center">
+        <h1>Bienvenue sur notre site</h1>
     </div>
-
     <div class="container mt-5 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-7">
@@ -44,12 +41,12 @@
             </div>
         </div>
     </div>
-
     <div class="container col-11 col-lg-7 text-center bg-content mt-4">
         <div class="row justify-content-center">
             <div class="col col-lg-auto ">
                 <h3>{{ refuge.name }}</h3>
-                <p>{{ refuge.name }} est un centre de soins qui accueille les animaux blessés ou abandonnés. Nous avons besoin de votre aide pour continuer à sauver des vies.</p>
+                <p>{{ refuge.name }}
+                    est un centre de soins qui accueille les animaux blessés ou abandonnés. Nous avons besoin de votre aide pour continuer à sauver des vies.</p>
                 <p class="fw-bolder">Vous avez trouvé un animal blessé !</p>
             </div>
         </div>
@@ -59,5 +56,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

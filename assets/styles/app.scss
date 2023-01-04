@@ -11,11 +11,8 @@ $link-hover-color: $primary;
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+// import your own styles
 body {
-    background-color: $primary;
-}
-
-main {
     background-image: url("../images/foret.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -24,6 +21,12 @@ main {
 header {
     .navitemsright {
         flex-grow: 0;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    main {
+        min-height: 520px;
     }
 }
 
