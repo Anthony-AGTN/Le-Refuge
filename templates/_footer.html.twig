@@ -29,10 +29,12 @@
                         <p class="text-white m-1">{{ refuge.postalCode }}
                             {{ refuge.city }}</p>
                     </li>
-                    <li class="nav-item">
-                        <p class="text-white m-1">Tel :
-                            {{ refuge.phone }}</p>
-                    </li>
+                    {% if refuge.phone %}
+                        <li class="nav-item">
+                            <p class="text-white m-1">Tel :
+                                {{ refuge.phone }}</p>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

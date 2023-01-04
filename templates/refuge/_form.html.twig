@@ -26,6 +26,7 @@
 
 {{ form_label(form.phone) }}
 {{ form_widget(form.phone) }}
+{{ form_errors(form.phone) }}
 
 <button class="btn btn-primary mt-4">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
