@@ -11,47 +11,51 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container text-center">
-        <h1>Message de
-            {{ message.firstName }}
-            {{ message.lastName }}</h1>
-    </div>
-    <div class="container text-center bg-content-table mt-4">
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-6">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Date</th>
-                            <td>{{ "now"|date("d/m/Y") }}</td>
-                        </tr>
-                        <tr>
-                            <th>FirstName</th>
-                            <td>{{ message.firstName }}</td>
-                        </tr>
-                        <tr>
-                            <th>LastName</th>
-                            <td>{{ message.lastName }}</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>
-                                <a href="mailto:{{ message.email }}">{{ message.email }}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Message</th>
-                            <td>{{ message.message }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="mt-4">
-                    <a href="{{ path('app_message_index') }}">Retour à la liste des messages</a>
-                </div>
-                <div class="mt-4">
-                    {{ include('message/_delete_form.html.twig') }}
+    {% if app.user %}
+        <div class="container text-center">
+            <h1>Message de
+                {{ message.firstName }}
+                {{ message.lastName }}</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Date</th>
+                                <td>{{ "now"|date("d/m/Y") }}</td>
+                            </tr>
+                            <tr>
+                                <th>FirstName</th>
+                                <td>{{ message.firstName }}</td>
+                            </tr>
+                            <tr>
+                                <th>LastName</th>
+                                <td>{{ message.lastName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Message</th>
+                                <td>{{ message.message }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <a href="{{ path('app_message_index') }}">Retour à la liste des messages</a>
+                    </div>
+                    <div class="mt-4">
+                        {{ include('message/_delete_form.html.twig') }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        {% include "/_access_denied.html.twig" %}
+    {% endif %}
 {% endblock %}
