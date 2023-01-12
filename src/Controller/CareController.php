@@ -68,7 +68,7 @@ class CareController extends MainController
     #[Route('/{id}', name: 'app_care_delete', methods: ['POST'])]
     public function delete(Request $request, Care $care, CareRepository $careRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$care->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $care->getId(), $request->request->get('_token'))) {
             $careRepository->remove($care, true);
         }
 
