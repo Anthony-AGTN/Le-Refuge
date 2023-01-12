@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CareRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,6 +32,14 @@ class Care
     #[ORM\ManyToOne(inversedBy: 'cares')]
     #[ORM\JoinColumn(nullable: false)]
     private ?AnimalKeeper $animalKeeper = null;
+
+    #[ORM\ManyToMany(targetEntity: TypeOfCare::class, mappedBy: 'cares')]
+    private Collection $typeOfCares;
+
+    public function __construct()
+    {
+        $this->typeOfCares = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,6 +102,33 @@ class Care
     public function setAnimalKeeper(?AnimalKeeper $animalKeeper): self
     {
         $this->animalKeeper = $animalKeeper;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TypeOfCare>
+     */
+    public function getTypeOfCares(): Collection
+    {
+        return $this->typeOfCares;
+    }
+
+    public function addTypeOfCare(TypeOfCare $typeOfCare): self
+    {
+        if (!$this->typeOfCares->contains($typeOfCare)) {
+            $this->typeOfCares->add($typeOfCare);
+            $typeOfCare->addCare($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTypeOfCare(TypeOfCare $typeOfCare): self
+    {
+        if ($this->typeOfCares->removeElement($typeOfCare)) {
+            $typeOfCare->removeCare($this);
+        }
 
         return $this;
     }
