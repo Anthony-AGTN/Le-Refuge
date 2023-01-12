@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Refuge;
 use App\Validator\Constraints\PhoneNumber;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,6 +20,7 @@ class RefugeType extends AbstractType
             ->add('postalCode', TextType::class, ['label' => 'Code postal', 'required' => false])
             ->add('city', TextType::class, ['label' => 'Ville', 'required' => false])
             ->add('country', TextType::class, ['label' => 'Pays', 'required' => false])
+            ->add('email', EmailType::class, ['label' => 'Votre E-mail'])
             ->add('phone', TextType::class, [
                 'label' => 'Téléphone',
                 'attr' => ['placeholder' => '0000000000 ou 00 00 00 00 00'],
