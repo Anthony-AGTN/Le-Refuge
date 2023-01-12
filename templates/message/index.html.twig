@@ -35,7 +35,7 @@
                                     <td>{{ message.firstName }}
                                         {{ message.lastName }}</td>
                                     <td class="d-none d-lg-table-cell">
-                                        <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+                                        <a href="mailto:{{ message.email }}" target="_blank">{{ message.email }}</a>
                                     </td>
                                     <td class="d-none d-lg-table-cell">
                                         <a class="message-text" href="{{ path('app_message_show', {'id': message.id}) }}">{{ message.message | slice(0, 240) }}...</a>
