@@ -55,9 +55,13 @@ class Animal
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $updatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'animal', targetEntity: Care::class, orphanRemoval: true)]
+    private Collection $cares;
+
     public function __construct()
     {
         $this->animalKeepers = new ArrayCollection();
+        $this->cares = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +198,36 @@ class Animal
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Care>
+     */
+    public function getCares(): Collection
+    {
+        return $this->cares;
+    }
+
+    public function addCare(Care $care): self
+    {
+        if (!$this->cares->contains($care)) {
+            $this->cares->add($care);
+            $care->setAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCare(Care $care): self
+    {
+        if ($this->cares->removeElement($care)) {
+            // set the owning side to null (unless already changed)
+            if ($care->getAnimal() === $this) {
+                $care->setAnimal(null);
+            }
+        }
 
         return $this;
     }

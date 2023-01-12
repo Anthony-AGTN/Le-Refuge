@@ -24,9 +24,13 @@ class AnimalKeeper
     #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'animalKeepers')]
     private Collection $animals;
 
+    #[ORM\OneToMany(mappedBy: 'animalKeeper', targetEntity: Care::class, orphanRemoval: true)]
+    private Collection $cares;
+
     public function __construct()
     {
         $this->animals = new ArrayCollection();
+        $this->cares = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +84,36 @@ class AnimalKeeper
     {
         if ($this->animals->removeElement($animal)) {
             $animal->removeAnimalKeeper($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Care>
+     */
+    public function getCares(): Collection
+    {
+        return $this->cares;
+    }
+
+    public function addCare(Care $care): self
+    {
+        if (!$this->cares->contains($care)) {
+            $this->cares->add($care);
+            $care->setAnimalKeeper($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCare(Care $care): self
+    {
+        if ($this->cares->removeElement($care)) {
+            // set the owning side to null (unless already changed)
+            if ($care->getAnimalKeeper() === $this) {
+                $care->setAnimalKeeper(null);
+            }
         }
 
         return $this;
