@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use App\Validator\Constraints\PhoneNumber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,8 +19,15 @@ class MessageType extends AbstractType
             ->add('firstName', TextType::class, ['label' => 'Votre Prénom'])
             ->add('lastName', TextType::class, ['label' => 'Votre Nom'])
             ->add('email', EmailType::class, ['label' => 'Votre E-mail'])
-            ->add('message', TextareaType::class, ['label' => 'Ici votre message'])
-        ;
+            ->add('phone', TextType::class, [
+                'label' => 'Téléphone',
+                'attr' => ['placeholder' => '00 00 00 00 00'],
+                'constraints' => [
+                    new PhoneNumber(),
+                ],
+                'required' => false,
+            ])
+            ->add('message', TextareaType::class, ['label' => 'Ici votre message']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
