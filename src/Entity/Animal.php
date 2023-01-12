@@ -49,9 +49,6 @@ class Animal
     )]
     private ?File $photoFile = null;
 
-    #[ORM\ManyToMany(targetEntity: AnimalKeeper::class, inversedBy: 'animals')]
-    private Collection $animalKeepers;
-
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -63,7 +60,6 @@ class Animal
 
     public function __construct()
     {
-        $this->animalKeepers = new ArrayCollection();
         $this->cares = new ArrayCollection();
         $this->followUps = new ArrayCollection();
     }
@@ -168,30 +164,6 @@ class Animal
     public function getPhotoFile(): ?File
     {
         return $this->photoFile;
-    }
-
-    /**
-     * @return Collection<int, AnimalKeeper>
-     */
-    public function getAnimalKeepers(): Collection
-    {
-        return $this->animalKeepers;
-    }
-
-    public function addAnimalKeeper(AnimalKeeper $animalKeeper): self
-    {
-        if (!$this->animalKeepers->contains($animalKeeper)) {
-            $this->animalKeepers[] = $animalKeeper;
-        }
-
-        return $this;
-    }
-
-    public function removeAnimalKeeper(AnimalKeeper $animalKeeper): self
-    {
-        $this->animalKeepers->removeElement($animalKeeper);
-
-        return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface

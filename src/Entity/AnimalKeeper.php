@@ -21,9 +21,6 @@ class AnimalKeeper
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'animalKeepers')]
-    private Collection $animals;
-
     #[ORM\OneToMany(mappedBy: 'animalKeeper', targetEntity: Care::class, orphanRemoval: true)]
     private Collection $cares;
 
@@ -32,7 +29,6 @@ class AnimalKeeper
 
     public function __construct()
     {
-        $this->animals = new ArrayCollection();
         $this->cares = new ArrayCollection();
         $this->followUps = new ArrayCollection();
     }
@@ -62,33 +58,6 @@ class AnimalKeeper
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Animal>
-     */
-    public function getAnimals(): Collection
-    {
-        return $this->animals;
-    }
-
-    public function addAnimal(Animal $animal): self
-    {
-        if (!$this->animals->contains($animal)) {
-            $this->animals[] = $animal;
-            $animal->addAnimalKeeper($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnimal(Animal $animal): self
-    {
-        if ($this->animals->removeElement($animal)) {
-            $animal->removeAnimalKeeper($this);
-        }
 
         return $this;
     }
