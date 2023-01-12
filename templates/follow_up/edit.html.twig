@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit FollowUp{% endblock %}
+
+{% block body %}
+    <h1>Edit FollowUp</h1>
+
+    {{ include('follow_up/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_follow_up_index') }}">back to list</a>
+
+    {{ include('follow_up/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FollowUp{% endblock %}
+
+{% block body %}
+    <h1>FollowUp</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ follow_up.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ follow_up.date ? follow_up.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ follow_up.weight }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ follow_up.size }}</td>
+            </tr>
+            <tr>
+                <th>HealthStatus</th>
+                <td>{{ follow_up.healthStatus }}</td>
+            </tr>
+            <tr>
+                <th>Observations</th>
+                <td>{{ follow_up.observations }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_follow_up_index') }}">back to list</a>
+
+    <a href="{{ path('app_follow_up_edit', {'id': follow_up.id}) }}">edit</a>
+
+    {{ include('follow_up/_delete_form.html.twig') }}
+{% endblock %}

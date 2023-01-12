@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FollowUp index{% endblock %}
+
+{% block body %}
+    <h1>FollowUp index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Weight</th>
+                <th>Size</th>
+                <th>HealthStatus</th>
+                <th>Observations</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for follow_up in follow_ups %}
+            <tr>
+                <td>{{ follow_up.id }}</td>
+                <td>{{ follow_up.date ? follow_up.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ follow_up.weight }}</td>
+                <td>{{ follow_up.size }}</td>
+                <td>{{ follow_up.healthStatus }}</td>
+                <td>{{ follow_up.observations }}</td>
+                <td>
+                    <a href="{{ path('app_follow_up_show', {'id': follow_up.id}) }}">show</a>
+                    <a href="{{ path('app_follow_up_edit', {'id': follow_up.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_follow_up_new') }}">Create new</a>
+{% endblock %}
