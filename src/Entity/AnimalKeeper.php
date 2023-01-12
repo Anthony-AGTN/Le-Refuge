@@ -27,10 +27,14 @@ class AnimalKeeper
     #[ORM\OneToMany(mappedBy: 'animalKeeper', targetEntity: Care::class, orphanRemoval: true)]
     private Collection $cares;
 
+    #[ORM\OneToMany(mappedBy: 'animalKeeper', targetEntity: FollowUp::class, orphanRemoval: true)]
+    private Collection $followUps;
+
     public function __construct()
     {
         $this->animals = new ArrayCollection();
         $this->cares = new ArrayCollection();
+        $this->followUps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,6 +117,36 @@ class AnimalKeeper
             // set the owning side to null (unless already changed)
             if ($care->getAnimalKeeper() === $this) {
                 $care->setAnimalKeeper(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FollowUp>
+     */
+    public function getFollowUps(): Collection
+    {
+        return $this->followUps;
+    }
+
+    public function addFollowUp(FollowUp $followUp): self
+    {
+        if (!$this->followUps->contains($followUp)) {
+            $this->followUps->add($followUp);
+            $followUp->setAnimalKeeper($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowUp(FollowUp $followUp): self
+    {
+        if ($this->followUps->removeElement($followUp)) {
+            // set the owning side to null (unless already changed)
+            if ($followUp->getAnimalKeeper() === $this) {
+                $followUp->setAnimalKeeper(null);
             }
         }
 
