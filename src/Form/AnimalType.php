@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Animal;
-use App\Entity\AnimalKeeper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -31,15 +30,6 @@ class AnimalType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false, // not mandatory, default is true
                 'download_uri' => false, // not mandatory, default is true
-            ])
-            ->add('animalKeepers', null, [
-                'label' => 'Soigneur.euse.s',
-                'class' => AnimalKeeper::class,
-                'multiple' => true,
-                'expanded' => false,
-                'choice_label' => function ($animalKeepers) {
-                    return $animalKeepers->getFirstName() . ' ' . $animalKeepers->getLastName();
-                }
             ]);
     }
 

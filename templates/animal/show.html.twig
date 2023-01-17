@@ -38,15 +38,6 @@
                             <h6>Commentaire</h6>
                             <p>{{ animal.comment }}</p>
                         </li>
-                        {% if animal.animalkeepers is not empty %}
-                            <li class="list-group-item">
-                                <h6>Soigneur.euse.s</h6>
-                                {% for animalKeeper in animal.animalkeepers %}
-                                    <p>{{ animalKeeper.firstName }}
-                                        {{ animalKeeper.lastName }}</p>
-                                {% endfor %}
-                            </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
