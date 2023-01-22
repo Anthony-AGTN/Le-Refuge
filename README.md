@@ -61,6 +61,18 @@ symfony server:start
 yarn run dev --watch
 yarn dev-server # With Hot Module Reload activated
 ```
+
+### Enable instagram feeds
+
+1. In `.env.local`, Uncomment BASE_FEED_URL / API_TOKEN_INSTAGRAM / LIMIT_DISPLAY_FEED_INSTAGRAM and fill in the token for API_TOKEN_INSTAGRAM
+```bash
+###> Instagram/API_BASIC_DISPLAY ###
+# BASE_FEED_URL="https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username"
+# API_TOKEN_INSTAGRAM="Here_your_api_key_for_basic_display"
+# LIMIT_DISPLAY_FEED_INSTAGRAM=6
+###< Instagram/API_BASIC_DISPLAY ###
+```
+
 ## Authors
 
 - [@Anthony Gouton](https://github.com/Anthony-AGTN)
