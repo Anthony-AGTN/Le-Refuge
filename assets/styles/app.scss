@@ -56,6 +56,7 @@ h1 {
     padding-bottom: 2rem;
 }
 
+/** Vich File **/
 .vich-file {
     display: flex;
     justify-content: space-around;
@@ -80,10 +81,12 @@ h1 {
     }
 }
 
+/** Vicopo **/
 .li-vicopo {
     list-style-type: none;
 }
 
+/** Connexion **/
 .connexion-container-1 {
     display: flex;
     flex-direction: column;
@@ -99,6 +102,25 @@ h1 {
     gap: 1rem;
 }
 
+/** Message **/
 .message-text {
     text-decoration: none;
+}
+
+/** Instagram Feeds **/
+.insta-media a {
+    height: 366.617px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 2%;
+    box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5);
+    opacity: 1;
+    display: block;
+    transition-property: background, box-shadow, border, color, opacity, transform;
+    transition-duration: 0.3s;
+}
+
+.insta-media a:hover {
+    opacity: 0.85;
 }

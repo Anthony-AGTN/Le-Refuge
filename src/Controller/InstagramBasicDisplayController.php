@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/instagram-feeds')]
 class InstagramBasicDisplayController extends MainController
 {
-    #[Route('/', name: 'instagram_feeds', methods: ['GET'])]
+    #[Route('/{apiKey}', name: 'instagram_feeds', methods: ['GET'])]
     public function getInstagramFeeds(string $apiKey = null): JsonResponse
     {
         $instaBasicDisplay = new InstagramBasicDisplayService();

@@ -60,15 +60,10 @@
     <div
         class="container col-11 col-lg-7 text-center bg-content mt-4">
         {# Instagram Feeds #}
-        {% set instagram = {
-        'sub_title': "Suivez nos actualités sur Instagram !",
-        'account_url': "https://www.instagram.com/agtn69/",
-        'account_url_title': "@" ~ refuge.name,
-        'header_title': refuge.name,
-        'header_text': "Notre refuge pour animaux est un lieu de paix et de sécurité pour tous les animaux en détresse. Rejoignez-nous dans notre mission de sauver et de protéger les animaux en difficulté.",
-        'header_img': asset('build/images/Instagram_Icon.webp'),
-        'header_img_alt': refuge.name,
-     } %}
-        {% include "component/instagram_feeds.html.twig" with {'sectionTitle': "Suivez nous sur les réseaux" } %}
+        {% include "component/instagram_feeds.html.twig" with {
+            'sectionTitle': "Suivez nous sur les réseaux",
+            'sub_title': "Suivez nos actualités sur Instagram !",
+            'account_url': "https://www.instagram.com/agtn69/",
+             } %}
     </div>
 {% endblock %}
