@@ -1,11 +1,11 @@
 <section>
-    <div>
+    <div id="instagram-feeds-container">
         <h2>{{ sectionTitle }}</h2>
         <p>{{ sub_title }}</p>
-        <div id="instagram-feeds-container" class="mx-1 mx-sm-4 mb-4 row row-cols-1 row-cols-sm-2 g-4 g-xl-5"></div>
+        <div id="instagram-feeds-img-container" class="mx-1 mx-sm-4 mb-4 row row-cols-1 row-cols-sm-2 g-4 g-xl-5"></div>
         <div class="mx-4 d-flex flex-column flex-sm-row justify-content-sm-evenly">
             <button onclick="getInstagramFeeds()" type="button" id="btn-get-instagram-feeds" class="btn btn-primary mb-4 mb-sm-0">{{ "Afficher plus..." }}</button>
-            <button onclick="window.open('{{ account_url }}', '_blank');" type="button" class="btn btn-info">{{ "Suivre sur instagram" }}</button>
+            <button onclick="window.open('{{ account_url }}', '_blank');" type="button" id="btn-get-instagram-follow" class="btn btn-info">{{ "Suivre sur instagram" }}</button>
         </div>
     </div>
 </section>
@@ -27,13 +27,13 @@
                     imgUrl = instagramFeed.thumbnail_url
                 }
 
-                /* Sélection de la div instagram-feeds-container */
-                const instagramFeedsContainer = document.getElementById('instagram-feeds-container');
+                /* Sélection de la div instagram-feeds-img-container */
+                const instagramFeedsImgContainer = document.getElementById('instagram-feeds-img-container');
 
                 /* Création de la div insta-media */
                 const newDivInstaMedia = document.createElement('div');
                 newDivInstaMedia.classList.add('insta-media');
-                instagramFeedsContainer.appendChild(newDivInstaMedia);
+                instagramFeedsImgContainer.appendChild(newDivInstaMedia);
 
                 /* Création du lien insta-media-link */
                 const newInstaMediaLink = document.createElement('a');
@@ -61,6 +61,22 @@
 
         }).catch(error => {
             console.log(error);
+            /* Sélection de la div instagram-feeds-container */
+            const instagramFeedsContainer = document.getElementById('instagram-feeds-container');
+
+            /* Création de la div alert */
+            const newDivAlert = document.createElement('div');
+            newDivAlert.classList.add('alert', 'alert-warning', 'mt-4');
+            newDivAlert.innerHTML += "Nous sommes désolés, le contenu n'est pas disponible pour l'instant !"
+            instagramFeedsContainer.appendChild(newDivAlert);
+
+            /* Désactivation du bouton 'Afficher plus...' */
+            const btnGetInstagramFeeds = document.getElementById("btn-get-instagram-feeds");
+            btnGetInstagramFeeds.setAttribute("style", "display: none;");
+
+            /* Désactivation du bouton 'Suivre sur instagram' */
+            const btnGetInstagramFollow = document.getElementById("btn-get-instagram-follow");
+            btnGetInstagramFollow.setAttribute("style", "display: none;");
         });
     }
 </script>
