@@ -60,6 +60,12 @@
             </div>
         </div>
     {% else %}
-        {% include "/_access_denied.html.twig" %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
     {% endif %}
 {% endblock %}
