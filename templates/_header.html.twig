@@ -20,7 +20,8 @@
                     {% if app.user %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ app.user.email }}
+                                {{ app.user.firstName }}
+                                {{ app.user.lastName }}
                             </a>
                             <ul class="dropdown-menu position-absolute">
                                 <li>
@@ -33,13 +34,15 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_animal_new') }}">+ Ajouter un pensionnaire</a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_animal_keeper_index') }}">🧑‍⚕️ Gestion des soigneur.euse.s</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_animal_keeper_new') }}">+ Ajouter un soigneur.euse</a>
-                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_animal_keeper_index') }}">🧑‍⚕️ Gestion des soigneur.euse.s</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_animal_keeper_new') }}">+ Ajouter un soigneur.euse</a>
+                                    </li>
+                                {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_message_index') }}">💊 Gestion des soins</a>
@@ -47,12 +50,14 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un soin</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">Gestion des types de soin</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un type de soin</a>
-                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_message_index') }}">💉 Gestion des types de soin</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un type de soin</a>
+                                    </li>
+                                {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_message_index') }}">📈 Gestion des suivis</a>
@@ -60,14 +65,16 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un suivi</a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">✉️ Gestion des messages</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ path('app_refuge_edit', {'id': 1}) }}">🛖 Informations du refuge</a>
-                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_message_index') }}">✉️ Gestion des messages</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_refuge_edit', {'id': 1}) }}">🛖 Informations du refuge</a>
+                                    </li>
+                                {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ path('app_logout') }}">🚪 Se déconnecter</a>

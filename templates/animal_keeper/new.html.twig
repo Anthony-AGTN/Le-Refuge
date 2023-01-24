@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         {{ refuge.name }}
         - Ajouter un soigneurs.euses
     {% else %}
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="container text-center">
             <h1>Ajouter soigneur.euse</h1>
         </div>

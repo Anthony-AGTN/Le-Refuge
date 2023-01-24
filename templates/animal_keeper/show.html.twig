@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         {{ refuge.name }}
         - Détail du soigneur.euse
     {% else %}
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="container text-center">
             <h1>Détail soigneur.euse "{{ animal_keeper.firstName }}
                 {{ animal_keeper.lastName }}"</h1>

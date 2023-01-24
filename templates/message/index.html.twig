@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         {{ refuge.name }}
         - Liste des messages
     {% else %}
