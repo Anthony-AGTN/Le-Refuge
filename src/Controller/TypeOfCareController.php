@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/type/of/care')]
-class TypeOfCareController extends AbstractController
+class TypeOfCareController extends MainController
 {
     #[Route('/', name: 'app_type_of_care_index', methods: ['GET'])]
     public function index(TypeOfCareRepository $typeOfCareRepository): Response

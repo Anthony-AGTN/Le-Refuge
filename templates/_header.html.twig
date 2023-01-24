@@ -45,25 +45,25 @@
                                 {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">💊 Gestion des soins</a>
+                                    <a class="dropdown-item" href="{{ path('app_care_index') }}">💊 Gestion des soins</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un soin</a>
+                                    <a class="dropdown-item" href="{{ path('app_care_new') }}">+ Ajouter un soin</a>
                                 </li>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li>
-                                        <a class="dropdown-item" href="{{ path('app_message_index') }}">💉 Gestion des types de soin</a>
+                                        <a class="dropdown-item" href="{{ path('app_type_of_care_index') }}">💉 Gestion des types de soin</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un type de soin</a>
+                                        <a class="dropdown-item" href="{{ path('app_type_of_care_new') }}">+ Ajouter un type de soin</a>
                                     </li>
                                 {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">📈 Gestion des suivis</a>
+                                    <a class="dropdown-item" href="{{ path('app_follow_up_index') }}">📈 Gestion des suivis</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_message_index') }}">+ Ajouter un suivi</a>
+                                    <a class="dropdown-item" href="{{ path('app_follow_up_new') }}">+ Ajouter un suivi</a>
                                 </li>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li><hr class="dropdown-divider"></li>

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/follow/up')]
-class FollowUpController extends AbstractController
+class FollowUpController extends MainController
 {
     #[Route('/', name: 'app_follow_up_index', methods: ['GET'])]
     public function index(FollowUpRepository $followUpRepository): Response
