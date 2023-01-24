@@ -1,43 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .edit-button {
+            max-width: 110px;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ refuge.name }}
+        - Liste des utilisateurs
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container text-center">
+            <h1>Liste des utilisateurs</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4 col-md-7 col-xl-5">
+            <div class="row justify-content-md-center">
+                <div class="col">
+                    <div class="text-end mb-3">
+                        <a class="btn btn-secondary" href="{{ path('app_user_new') }}">+ Ajouter un utilisateur</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Utilisateur</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>
+                                        {{ user.firstName }}
+                                        {{ user.lastName }}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-center gap-md-4 gap-lg-5">
+                                            <a class="btn btn-secondary edit-button mb-2 mb-md-0 me-md-2" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                                            {{ include('user/_delete_form.html.twig') }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-info" role="alert">
+                                            Aucun enregistrement trouvé !
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}

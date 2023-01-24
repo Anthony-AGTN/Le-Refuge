@@ -1,11 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ refuge.name }}
+        - Ajouter un utilisateur
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
-
-    {{ include('user/_form.html.twig') }}
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container text-center">
+            <h1>Ajouter un utilisateur</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    {{ include('user/_form.html.twig') }}
+                    <div class="m-4">
+                        <a href="{{ path('app_user_index') }}">Retour à la liste des utilisateurs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}
