@@ -16,7 +16,6 @@ class CareType extends AbstractType
             ->add('description')
             ->add('result')
             ->add('animal')
-            ->add('animalKeeper')
             ->add('user')
         ;
     }

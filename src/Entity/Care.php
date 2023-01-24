@@ -29,10 +29,6 @@ class Care
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cares')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?AnimalKeeper $animalKeeper = null;
-
     #[ORM\ManyToMany(targetEntity: TypeOfCare::class, mappedBy: 'cares')]
     private Collection $typeOfCares;
 
@@ -93,18 +89,6 @@ class Care
     public function setAnimal(?Animal $animal): self
     {
         $this->animal = $animal;
-
-        return $this;
-    }
-
-    public function getAnimalKeeper(): ?AnimalKeeper
-    {
-        return $this->animalKeeper;
-    }
-
-    public function setAnimalKeeper(?AnimalKeeper $animalKeeper): self
-    {
-        $this->animalKeeper = $animalKeeper;
 
         return $this;
     }

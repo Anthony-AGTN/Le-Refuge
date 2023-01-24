@@ -34,10 +34,6 @@ class FollowUp
     private ?Animal $animal = null;
 
     #[ORM\ManyToOne(inversedBy: 'followUps')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?AnimalKeeper $animalKeeper = null;
-
-    #[ORM\ManyToOne(inversedBy: 'followUps')]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -113,18 +109,6 @@ class FollowUp
     public function setAnimal(?Animal $animal): self
     {
         $this->animal = $animal;
-
-        return $this;
-    }
-
-    public function getAnimalKeeper(): ?AnimalKeeper
-    {
-        return $this->animalKeeper;
-    }
-
-    public function setAnimalKeeper(?AnimalKeeper $animalKeeper): self
-    {
-        $this->animalKeeper = $animalKeeper;
 
         return $this;
     }

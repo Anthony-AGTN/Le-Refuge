@@ -18,7 +18,6 @@ class FollowUpType extends AbstractType
             ->add('healthStatus')
             ->add('observations')
             ->add('animal')
-            ->add('animalKeeper')
             ->add('user')
         ;
     }
