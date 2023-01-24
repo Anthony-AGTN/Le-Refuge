@@ -23,7 +23,6 @@ class RefugeType extends AbstractType
             ->add('email', EmailType::class, ['label' => 'Votre E-mail'])
             ->add('phone', TextType::class, [
                 'label' => 'Téléphone',
-                'attr' => ['placeholder' => '0000000000 ou 00 00 00 00 00'],
                 'constraints' => [
                     new PhoneNumber(),
                 ],
