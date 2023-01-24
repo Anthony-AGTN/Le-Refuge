@@ -22,6 +22,21 @@ class UserFixtures extends Fixture
         $admin = new User();
         $admin->setEmail('anthony.gouton@lerefuge.com');
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setFirstName('Anthony');
+        $admin->setLastName('Gouton');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $admin,
+            'admin'
+        );
+        $admin->setPassword($hashedPassword);
+        $manager->persist($admin);
+
+        // Création d’un utilisateur de type “administrateur”
+        $admin = new User();
+        $admin->setEmail('camille.leroy@lerefuge.com');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setFirstName('Camille');
+        $admin->setLastName('Leroy');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
             'admin'
@@ -33,51 +48,68 @@ class UserFixtures extends Fixture
         $animalKeeper = new User();
         $animalKeeper->setEmail('remy.durand@lerefuge.com');
         $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
+        $animalKeeper->setFirstName('Rémy');
+        $animalKeeper->setLastName('Durand');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $animalKeeper,
             'password'
         );
-
-        // Création d’un utilisateur de type “soigneur”
-        $animalKeeper = new User();
-        $animalKeeper->setEmail('animalKeeper@lerefuge.com');
-        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $animalKeeper,
-            'password'
-        );
-
-        // Création d’un utilisateur de type “soigneur”
-        $animalKeeper = new User();
-        $animalKeeper->setEmail('animalKeeper@lerefuge.com');
-        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $animalKeeper,
-            'password'
-        );
-
-        // Création d’un utilisateur de type “soigneur”
-        $animalKeeper = new User();
-        $animalKeeper->setEmail('animalKeeper@lerefuge.com');
-        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $animalKeeper,
-            'password'
-        );
-
-        // Création d’un utilisateur de type “soigneur”
-        $animalKeeper = new User();
-        $animalKeeper->setEmail('animalKeeper@lerefuge.com');
-        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $animalKeeper,
-            'password'
-        );
-
         $animalKeeper->setPassword($hashedPassword);
         $manager->persist($animalKeeper);
 
-        // Sauvegarde des 2 nouveaux utilisateurs :
+        // Création d’un utilisateur de type “soigneur”
+        $animalKeeper = new User();
+        $animalKeeper->setEmail('nicolas.maison@lerefuge.com');
+        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
+        $animalKeeper->setFirstName('Nicolas');
+        $animalKeeper->setLastName('Maison');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $animalKeeper,
+            'password'
+        );
+        $animalKeeper->setPassword($hashedPassword);
+        $manager->persist($animalKeeper);
+
+        // Création d’un utilisateur de type “soigneur”
+        $animalKeeper = new User();
+        $animalKeeper->setEmail('marie.pourrier@lerefuge.com');
+        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
+        $animalKeeper->setFirstName('Marie');
+        $animalKeeper->setLastName('Pourrier');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $animalKeeper,
+            'password'
+        );
+        $animalKeeper->setPassword($hashedPassword);
+        $manager->persist($animalKeeper);
+
+        // Création d’un utilisateur de type “soigneur”
+        $animalKeeper = new User();
+        $animalKeeper->setEmail('laura.rodriguez@lerefuge.com');
+        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
+        $animalKeeper->setFirstName('Laura');
+        $animalKeeper->setLastName('Rodriguez');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $animalKeeper,
+            'password'
+        );
+        $animalKeeper->setPassword($hashedPassword);
+        $manager->persist($animalKeeper);
+
+        // Création d’un utilisateur de type “soigneur”
+        $animalKeeper = new User();
+        $animalKeeper->setEmail('jordan.mousson@lerefuge.com');
+        $animalKeeper->setRoles(['ROLE_ANIMAL_KEEPER']);
+        $animalKeeper->setFirstName('Jordan');
+        $animalKeeper->setLastName('Mousson');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $animalKeeper,
+            'password'
+        );
+        $animalKeeper->setPassword($hashedPassword);
+        $manager->persist($animalKeeper);
+
+        // Sauvegarde des nouveaux utilisateurs :
         $manager->flush();
     }
 }

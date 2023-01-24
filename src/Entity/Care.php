@@ -36,6 +36,9 @@ class Care
     #[ORM\ManyToMany(targetEntity: TypeOfCare::class, mappedBy: 'cares')]
     private Collection $typeOfCares;
 
+    #[ORM\ManyToOne(inversedBy: 'cares')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->typeOfCares = new ArrayCollection();
@@ -129,6 +132,18 @@ class Care
         if ($this->typeOfCares->removeElement($typeOfCare)) {
             $typeOfCare->removeCare($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
