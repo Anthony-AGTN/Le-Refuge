@@ -40,14 +40,6 @@ class TypeOfCareController extends MainController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_type_of_care_show', methods: ['GET'])]
-    public function show(TypeOfCare $typeOfCare): Response
-    {
-        return $this->render('type_of_care/show.html.twig', [
-            'type_of_care' => $typeOfCare,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_type_of_care_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, TypeOfCare $typeOfCare, TypeOfCareRepository $typeOfCareRepository): Response
     {

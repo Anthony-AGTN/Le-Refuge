@@ -1,35 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TypeOfCare index{% endblock %}
+{% block title %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ refuge.name }}
+        - Liste des types de soins
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>TypeOfCare index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_of_care in type_of_cares %}
-            <tr>
-                <td>{{ type_of_care.id }}</td>
-                <td>{{ type_of_care.name }}</td>
-                <td>
-                    <a href="{{ path('app_type_of_care_show', {'id': type_of_care.id}) }}">show</a>
-                    <a href="{{ path('app_type_of_care_edit', {'id': type_of_care.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_type_of_care_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container text-center">
+            <h1>Liste des types de soins</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4 col-md-7 col-xl-5">
+            <div class="row justify-content-md-center">
+                <div class="col">
+                    <div class="text-end mb-3">
+                        <a class="btn btn-primary" href="{{ path('app_type_of_care_new') }}">+ Ajouter un type de soin</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap">Id</th>
+                                <th class="text-nowrap">Nom</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for type_of_care in type_of_cares %}
+                                <tr>
+                                    <td>{{ type_of_care.id }}</td>
+                                    <td>{{ type_of_care.name }}</td>
+                                    <td>
+                                        <a class="btn btn-secondary mb-2" href="{{ path('app_type_of_care_edit', {'id': type_of_care.id}) }}">Modifier</a>
+                                        {{ include('type_of_care/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-info" role="alert">
+                                            Aucun enregistrement trouvé !
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}

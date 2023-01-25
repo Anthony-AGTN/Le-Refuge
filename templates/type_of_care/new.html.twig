@@ -1,11 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New TypeOfCare{% endblock %}
+{% block title %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ refuge.name }}
+        - Ajouter un type de soin
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new TypeOfCare</h1>
-
-    {{ include('type_of_care/_form.html.twig') }}
-
-    <a href="{{ path('app_type_of_care_index') }}">back to list</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container text-center">
+            <h1>Ajouter un type de soin</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    {{ include('type_of_care/_form.html.twig') }}
+                    <div class="m-4">
+                        <a href="{{ path('app_type_of_care_index') }}">Retour à la liste des types de soins</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}
