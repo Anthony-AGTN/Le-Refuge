@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\FollowUp;
 use App\Form\FollowUpType;
 use App\Repository\FollowUpRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +25,10 @@ class FollowUpController extends MainController
     public function new(Request $request, FollowUpRepository $followUpRepository): Response
     {
         $followUp = new FollowUp();
+        $user = $this->tokenStorage->getToken()->getUser();
+        $followUp->setUser($user);
+        $followUp->setDate(new DateTime('now'));
+
         $form = $this->createForm(FollowUpType::class, $followUp);
         $form->handleRequest($request);
 

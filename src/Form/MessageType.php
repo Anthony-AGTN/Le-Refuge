@@ -26,7 +26,10 @@ class MessageType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('message', TextareaType::class, ['label' => 'Ici votre message']);
+            ->add('message', TextareaType::class, [
+                'label' => 'Ici votre message',
+                'attr' => ['rows' => 5],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

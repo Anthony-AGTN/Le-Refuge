@@ -1,11 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New FollowUp{% endblock %}
+{% block title %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Ajouter un suivi
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new FollowUp</h1>
-
-    {{ include('follow_up/_form.html.twig') }}
-
-    <a href="{{ path('app_follow_up_index') }}">back to list</a>
+    {% if app.user %}
+        <div class="container text-center">
+            <h1>Ajouter un suivi</h1>
+        </div>
+        <div class="container text-center bg-content my-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    {{ include('follow_up/_form.html.twig') }}
+                    <div class="m-4">
+                        <a href="{{ path('app_follow_up_index') }}">Retour à la liste des suivis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}

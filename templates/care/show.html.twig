@@ -30,9 +30,11 @@
                             </tr>
                             <tr>
                                 <th>Pensionnaire</th>
-                                <td>{{ care.animal.id }}
-                                    -
-                                    {{ care.animal.name }}</td>
+                                <td>
+                                    <a href="{{ path('app_animal_show', {'id': care.animal.id}) }}">{{ care.animal.id }}
+                                        -
+                                        {{ care.animal.name }}</a>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Soigneur</th>

@@ -60,25 +60,24 @@ class CareController extends MainController
     }
 
     #[Route('/{id}/edit', name: 'app_care_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Care $care, CareRepository $careRepository,ManagerRegistry $doctrine): Response
+    public function edit(Request $request, Care $care, CareRepository $careRepository, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(CareType::class, $care);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            /* $em = $doctrine->getManager(); */
 
-            /* $oldTypeOfCares = $care->getTypeOfCares(); */
             $newTypeOfCares = $form->getData()->getTypeOfCares();
-            
-            /* foreach ($oldTypeOfCares as $oldTypeOfCare) {
-                $care->removeTypeOfCare($oldTypeOfCare);
-            } */
 
             foreach ($newTypeOfCares as $newTypeOfCare) {
                 $newTypeOfCare->addCare($care);
             }
+
+            /* $em = $doctrine->getManager(); */
+            /* $oldTypeOfCares = $care->getTypeOfCares(); */
+            /* foreach ($oldTypeOfCares as $oldTypeOfCare) {
+                $care->removeTypeOfCare($oldTypeOfCare);
+            } */
 
             $careRepository->save($care, true);
 
