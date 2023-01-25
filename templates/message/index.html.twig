@@ -42,7 +42,9 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-secondary mb-2" href="{{ path('app_message_show', {'id': message.id}) }}">Détail</a>
-                                        {{ include('message/_delete_form.html.twig') }}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            {{ include('message/_delete_form.html.twig') }}
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% else %}

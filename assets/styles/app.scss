@@ -52,6 +52,16 @@ li {
     list-style-type: none;
 }
 
+.li-vicopo {
+    background-color: $primary-white-1;
+}
+
+.li-vicopo:hover {
+    color: $primary-white-1;
+    background-color: #04aad3;
+    cursor: pointer;
+}
+
 .bg-content {
     background-color: $bg-content-color;
     border-radius: 10px;

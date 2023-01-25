@@ -36,7 +36,9 @@
                                     <td>{{ type_of_care.name }}</td>
                                     <td>
                                         <a class="btn btn-secondary mb-2" href="{{ path('app_type_of_care_edit', {'id': type_of_care.id}) }}">Modifier</a>
-                                        {{ include('type_of_care/_delete_form.html.twig') }}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            {{ include('type_of_care/_delete_form.html.twig') }}
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% else %}

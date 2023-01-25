@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if app.user %}
         {{ refuge.name }}
         - Détail du soin
     {% else %}
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if app.user %}
         <div class="container text-center">
             <h1>Détail du soin</h1>
         </div>
@@ -62,9 +62,11 @@
                     <div class="mt-4">
                         <a href="{{ path('app_care_index') }}">Retour à la liste des soins</a>
                     </div>
-                    <div class="mt-4">
-                        {{ include('care/_delete_form.html.twig') }}
-                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="mt-4">
+                            {{ include('care/_delete_form.html.twig') }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
