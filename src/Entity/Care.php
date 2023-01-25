@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CareRepository::class)]
 class Care
@@ -21,9 +22,6 @@ class Care
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $result = null;
 
     #[ORM\ManyToOne(inversedBy: 'cares')]
     #[ORM\JoinColumn(nullable: false)]
@@ -65,18 +63,6 @@ class Care
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getResult(): ?string
-    {
-        return $this->result;
-    }
-
-    public function setResult(?string $result): self
-    {
-        $this->result = $result;
 
         return $this;
     }

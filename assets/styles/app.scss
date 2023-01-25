@@ -44,6 +44,14 @@ h1 {
     color: $primary-white-1;
 }
 
+ul {
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+}
+
 .bg-content {
     background-color: $bg-content-color;
     border-radius: 10px;
@@ -58,13 +66,22 @@ h1 {
     padding-bottom: 2rem;
 }
 
-/** User Form **/
-#user_roles {
+/** Form **/
+#care_date_time_hour,
+#care_date_time_minute {
+    max-width: 70px;
+}
+
+#user_roles,
+#care_typeOfCares {
     text-align: left;
     padding: 15px;
     border: 1px solid #ced4da;
     border-radius: 0.375rem;
     background-color: $bg-content-table-color;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 /** Vich File **/

@@ -1,34 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Care{% endblock %}
+{% block title %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ refuge.name }}
+        - Détail du soin
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Care</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ care.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ care.date ? care.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ care.description }}</td>
-            </tr>
-            <tr>
-                <th>Result</th>
-                <td>{{ care.result }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_care_index') }}">back to list</a>
-
-    <a href="{{ path('app_care_edit', {'id': care.id}) }}">edit</a>
-
-    {{ include('care/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container text-center">
+            <h1>Détail du soin</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ care.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <td>{{ care.date ? care.date|date('d-m-Y H:i:s') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pensionnaire</th>
+                                <td>{{ care.animal.id }}
+                                    -
+                                    {{ care.animal.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Soigneur</th>
+                                <td>{{ care.user.firstName }}
+                                    {{ care.user.lastName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Types de soin</th>
+                                <td>
+                                    <ul>
+                                        {% for typeOfCare in care.typeOfCares %}
+                                            <li>
+                                                {{ typeOfCare.name }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ care.description }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4">
+                        <a href="{{ path('app_care_index') }}">Retour à la liste des soins</a>
+                    </div>
+                    <div class="mt-4">
+                        {{ include('care/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}

@@ -1,13 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Care{% endblock %}
+{% block title %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Modification d'un soin
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Care</h1>
-
-    {{ include('care/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_care_index') }}">back to list</a>
-
-    {{ include('care/_delete_form.html.twig') }}
+    {% if app.user %}
+        <div class="container text-center">
+            <h1>Modifier le soin
+                {{ care.id }}</h1>
+        </div>
+        <div class="container text-center bg-content mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-6">
+                    {{ include('care/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
+                    <div class="mt-4">
+                        {{ include('care/_delete_form.html.twig') }}
+                    </div>
+                    <div class="m-4">
+                        <a href="{{ path('app_care_index') }}">Retour à la liste des pensionnaires</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}
+    {% endif %}
 {% endblock %}

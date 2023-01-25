@@ -1,39 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Care index{% endblock %}
+{% block title %}
+    {% if app.user %}
+        {{ refuge.name }}
+        - Gestion des soins
+    {% else %}
+        {{ refuge.name }}
+        - Accès refusé
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Care index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Result</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for care in cares %}
-            <tr>
-                <td>{{ care.id }}</td>
-                <td>{{ care.date ? care.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ care.description }}</td>
-                <td>{{ care.result }}</td>
-                <td>
-                    <a href="{{ path('app_care_show', {'id': care.id}) }}">show</a>
-                    <a href="{{ path('app_care_edit', {'id': care.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_care_new') }}">Create new</a>
-{% endblock %}
+    {% if app.user %}
+        <div class="container text-center">
+            <h1>Gestion des soins</h1>
+        </div>
+        <div class="container text-center bg-content-table mt-4">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-12">
+                    <div class="text-end mb-3">
+                        <a class="btn btn-primary" href="{{ path('app_care_new') }}">+ Ajouter un nouveau soin</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Date</th>
+                                <th class="d-none d-sm-table-cell text-nowrap">Pensionnaire</th>
+                                <th class="d-none d-md-table-cell text-nowrap">Soigneur</th>
+                                <th class="d-none d-md-table-cell text-nowrap">Types de soin</th>
+                                <th class="d-none d-xl-table-cell text-nowrap">Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for care in cares %}
+                                <tr>
+                                    <td>
+                                        {{ care.id }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_care_show', {'id': care.id}) }}">
+                                            <span class="text-nowrap">{{ care.date ? care.date|date('d-m-Y H:i:s') : '' }}</span>
+                                        </a>
+                                        <br/>
+                                        <span class="d-sm-none">({{ care.animal.name }})</span>
+                                        <br/>
+                                        <span class="d-sm-none">(Type de soin)</span>
+                                    </td>
+                                    <td class="d-none d-sm-table-cell text-nowrap">
+                                        <a href="{{ path('app_animal_show', {'id': care.animal.id}) }}">{{ care.animal.id }}
+                                            -
+                                            {{ care.animal.name }}</a>
+                                    </td>
+                                    <td class="d-none d-md-table-cell text-nowrap">{{ care.user.firstName }}
+                                        {{ care.user.lastName }}
+                                    </td>
+                                    <td class="d-none d-md-table-cell text-nowrap">
+                                        <ul>
+                                            {% for typeOfCare in care.typeOfCares %}
+                                                <li>
+                                                    {{ typeOfCare.name }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td class="d-none d-xl-table-cell">{{ care.description | slice(0, 240) }}</td>
+                                    <td>
+                                        <a class="btn btn-secondary mb-2" href="{{ path('app_care_edit', {'id': care.id}) }}">Modifier</a>
+                                        {{ include('care/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-info" role="alert">
+                                            Aucun enregistrement trouvé !
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </tr>
+                </tbody>
+            </tbody>
+        </table>
+    </div>
+</div></div>{% else %}{% include "component/alert.html.twig" with {
+            'alert_title': "Accès refusé",
+            'alert_color': "danger",
+            'alert_text': "Vous n'avez pas l'autorisation d'accéder à cette page !",
+            'alert_redirect_link': path('app_index'),
+            'alert_redirect_link_text': "Retour à la page d'accueil",
+        } %}{% endif %}{% endblock %}
