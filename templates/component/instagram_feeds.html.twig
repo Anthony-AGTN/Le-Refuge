@@ -4,7 +4,12 @@
         <p>{{ sub_title }}</p>
         <div id="instagram-feeds-img-container" class="mx-1 mx-sm-4 mb-4 row row-cols-1 row-cols-sm-2 g-4 g-xl-5"></div>
         <div class="mx-4 d-flex flex-column flex-sm-row justify-content-sm-evenly">
-            <button onclick="getInstagramFeeds()" type="button" id="btn-get-instagram-feeds" class="btn btn-primary mb-4 mb-sm-0">{{ "Afficher plus..." }}</button>
+            <button onclick="getInstagramFeeds()" type="button" id="btn-get-instagram-feeds" class="btn btn-primary mb-4 mb-sm-0">
+                Afficher plus...
+                <div id="button-spinner" class="spinner-border spinner-border-sm visually-hidden" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
             <button onclick="window.open('{{ account_url }}', '_blank');" type="button" id="btn-get-instagram-follow" class="btn btn-info">{{ "Suivre sur instagram" }}</button>
         </div>
     </div>
@@ -14,14 +19,14 @@
     getInstagramFeeds();
 
     function getInstagramFeeds(apiKey = null) {
+        const spiner = document.getElementById('button-spinner');
+        spiner.classList.remove('visually-hidden');
         let url = '{{ path('instagram_feeds', {'apiKey': 'API_KEY'}) }}'.replace('API_KEY', apiKey ?? '')
         fetch(url).then(response => response.json()).then(data => {
 
             const instagramFeeds = data.instagramFeeds.data;
 
-            for (const instagramFeed of instagramFeeds) { 
-                
-                /* Sélection de l'url de l'image en fonction du type de média */
+            for (const instagramFeed of instagramFeeds) { /* Sélection de l'url de l'image en fonction du type de média */
                 let imgUrl = instagramFeed.media_url
                 if (instagramFeed.media_type == "VIDEO") {
                     imgUrl = instagramFeed.thumbnail_url
@@ -77,6 +82,8 @@
             /* Désactivation du bouton 'Suivre sur instagram' */
             const btnGetInstagramFollow = document.getElementById("btn-get-instagram-follow");
             btnGetInstagramFollow.setAttribute("style", "display: none;");
+        }). finally(() => {
+            spiner.classList.add('visually-hidden');
         });
     }
 </script>
