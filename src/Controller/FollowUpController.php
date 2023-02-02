@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\FollowUp;
+use App\Entity\User;
 use App\Form\FollowUpType;
 use App\Repository\FollowUpRepository;
 use DateTime;
@@ -25,8 +26,10 @@ class FollowUpController extends MainController
     public function new(Request $request, FollowUpRepository $followUpRepository): Response
     {
         $followUp = new FollowUp();
-        $user = $this->tokenStorage->getToken()->getUser();
-        $followUp->setUser($user);
+        $user = $this->security->getUser();
+        if ($user instanceof User) {
+            $followUp->setUser($user);
+        }
         $followUp->setDate(new DateTime('now'));
 
         $form = $this->createForm(FollowUpType::class, $followUp);
