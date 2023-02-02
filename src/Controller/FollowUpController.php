@@ -26,10 +26,7 @@ class FollowUpController extends MainController
     public function new(Request $request, FollowUpRepository $followUpRepository): Response
     {
         $followUp = new FollowUp();
-        $user = $this->security->getUser();
-        if ($user instanceof User) {
-            $followUp->setUser($user);
-        }
+        $followUp->setUser($this->getCurrentUser());
         $followUp->setDate(new DateTime('now'));
 
         $form = $this->createForm(FollowUpType::class, $followUp);

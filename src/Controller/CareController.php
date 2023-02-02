@@ -26,10 +26,7 @@ class CareController extends MainController
     public function new(Request $request, CareRepository $careRepository): Response
     {
         $care = new Care();
-        $user = $this->security->getUser();
-        if ($user instanceof User) {
-            $care->setUser($user);
-        }
+        $care->setUser($this->getCurrentUser());
         $care->setDate(new DateTime('now'));
 
         $form = $this->createForm(CareType::class, $care);

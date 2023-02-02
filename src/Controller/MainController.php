@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\RefugeRepository;
 use App\Service\FormatDataService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,13 +14,23 @@ class MainController extends AbstractController
 {
     private RefugeRepository $refugeRepository;
     private RequestStack $requestStack;
-    protected Security $security;
+    private Security $security;
 
     public function __construct(RefugeRepository $refugeRepository, RequestStack $requestStack, Security $security)
     {
         $this->refugeRepository = $refugeRepository;
         $this->requestStack = $requestStack;
         $this->security = $security;
+    }
+
+    // Récupération de l'utilisateur connecté
+    protected function getCurrentUser(): ?User
+    {
+        $currentUser = $this->security->getUser();
+        if ($currentUser instanceof User) {
+            return $currentUser;
+        }
+        return null;
     }
 
     /**
