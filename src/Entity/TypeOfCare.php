@@ -18,7 +18,7 @@ class TypeOfCare
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Care::class, inversedBy: 'typeOfCares')]
+    #[ORM\ManyToMany(targetEntity: Care::class, mappedBy: 'typeOfCares')]
     private Collection $cares;
 
     public function __construct()
@@ -55,6 +55,7 @@ class TypeOfCare
     {
         if (!$this->cares->contains($care)) {
             $this->cares->add($care);
+            $care->addTypeOfCare($this);
         }
 
         return $this;
@@ -62,6 +63,10 @@ class TypeOfCare
 
     public function removeCare(Care $care): self
     {
+        if ($this->cares->removeElement($care)) {
+            $care->removeTypeOfCare($this);
+        }
+
         $this->cares->removeElement($care);
 
         return $this;

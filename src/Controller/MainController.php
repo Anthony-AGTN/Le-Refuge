@@ -7,19 +7,19 @@ use App\Service\FormatDataService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Security;
 
 class MainController extends AbstractController
 {
     private RefugeRepository $refugeRepository;
     private RequestStack $requestStack;
-    protected TokenStorageInterface $tokenStorage;
+    protected Security $security;
 
-    public function __construct(RefugeRepository $refugeRepository, RequestStack $requestStack, TokenStorageInterface $tokenStorage)
+    public function __construct(RefugeRepository $refugeRepository, RequestStack $requestStack, Security $security)
     {
         $this->refugeRepository = $refugeRepository;
         $this->requestStack = $requestStack;
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
     }
 
     /**

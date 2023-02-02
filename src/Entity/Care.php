@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CareRepository::class)]
 class Care
@@ -27,7 +26,7 @@ class Care
     #[ORM\JoinColumn(nullable: false)]
     private ?Animal $animal = null;
 
-    #[ORM\ManyToMany(targetEntity: TypeOfCare::class, mappedBy: 'cares')]
+    #[ORM\ManyToMany(targetEntity: TypeOfCare::class, inversedBy: 'cares')]
     private Collection $typeOfCares;
 
     #[ORM\ManyToOne(inversedBy: 'cares')]
@@ -99,9 +98,7 @@ class Care
 
     public function removeTypeOfCare(TypeOfCare $typeOfCare): self
     {
-        if ($this->typeOfCares->removeElement($typeOfCare)) {
-            $typeOfCare->removeCare($this);
-        }
+        $this->typeOfCares->removeElement($typeOfCare);
 
         return $this;
     }
